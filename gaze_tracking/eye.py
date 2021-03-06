@@ -3,6 +3,14 @@ import numpy as np
 import cv2
 from .pupil import Pupil
 
+# Class
+
+
+class Face(object):
+
+    def __init__():
+        self.frame = None
+
 
 class Eye(object):
     """
@@ -41,7 +49,8 @@ class Eye(object):
             landmarks (dlib.full_object_detection): Facial landmarks for the face region
             points (list): Points of an eye (from the 68 Multi-PIE landmarks)
         """
-        region = np.array([(landmarks.part(point).x, landmarks.part(point).y) for point in points])
+        region = np.array(
+            [(landmarks.part(point).x, landmarks.part(point).y) for point in points])
         region = region.astype(np.int32)
 
         # Applying a mask to get only the eye
@@ -77,8 +86,10 @@ class Eye(object):
         """
         left = (landmarks.part(points[0]).x, landmarks.part(points[0]).y)
         right = (landmarks.part(points[3]).x, landmarks.part(points[3]).y)
-        top = self._middle_point(landmarks.part(points[1]), landmarks.part(points[2]))
-        bottom = self._middle_point(landmarks.part(points[5]), landmarks.part(points[4]))
+        top = self._middle_point(landmarks.part(
+            points[1]), landmarks.part(points[2]))
+        bottom = self._middle_point(landmarks.part(
+            points[5]), landmarks.part(points[4]))
 
         eye_width = math.hypot((left[0] - right[0]), (left[1] - right[1]))
         eye_height = math.hypot((top[0] - bottom[0]), (top[1] - bottom[1]))
