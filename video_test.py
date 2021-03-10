@@ -11,23 +11,26 @@ import matplotlib.pyplot as plt
 import time
 
 from moviepy.editor import *
+from video_resize import video_rotation
 
-
-#os.chdir(current_directory+"\\Data\\A")
-
-#Get current Directory
-current_directory = os.getcwd()
 
 #Change directory to datasets to get data
-os.chdir(current_directory+"\\Data\\Xiang\\Rotated")
-video_names=os.listdir()
+os.chdir("C:\\Users\\Jun Hso\\Desktop")
+current_directory = os.getcwd()
+print(current_directory)
 
-max_x=0
-max_y=0
- 
+######################Change this when necessary #################################
+video_name = "JHprac_2021_03_10_12_47_12.mp4"
+new_video_name = video_name[:-4]+"_rotated"+".mp4"
+
+# rotating the video
+video_rotation(video_name,current_directory)
+
+# Change to the right directory
+os.chdir(current_directory+"\\rotated")
 
 # takes in a video
-cap = cv2.VideoCapture("JH_2021_03_01_18_41_12_rotated.mp4")
+cap = cv2.VideoCapture(new_video_name)
 gaze = GazeTracking()
 
 
