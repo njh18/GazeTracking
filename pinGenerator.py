@@ -14,7 +14,7 @@ def pinGenerator(num):
     
     while counter<num:
         current = ""
-        for i in range(6):
+        for i in range(4):
             current += str(random.randint(0,9))
         
         listofnumbers.append(current)
