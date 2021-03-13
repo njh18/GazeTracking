@@ -49,9 +49,11 @@ def video_rotation_multiple(current_directory):
 
     # Creates a new folder for resizing
     rotated_folder = current_directory + "\\rotated"
-    if not os.path.exists(rotated_folder):
+    if os.path.exists(rotated_folder):
+        list_of_video_names.remove("rotated")
+    else:
         os.makedirs(rotated_folder)
-
+        
     for video_name in list_of_video_names:
         print("------------------" + "Processing " +
               video_name + " now" + "------------------")

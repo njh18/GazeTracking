@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 import time
 
 from moviepy.editor import *
-from video_resize import video_rotation
+from video_rotation import video_rotation
 
 
 # Change directory to datasets to get data
