@@ -20,7 +20,7 @@ current_directory = os.getcwd()
 
 
 ######################Change this when necessary #################################
-video_name = "JHprac_2021_03_10_12_47_12.mp4"
+video_name = "JHprac_2021_03_12_13_11_26.mp4"
 new_video_name = video_name[:-4]+"_rotated"+".mp4"
 
 # rotating the video
@@ -48,7 +48,6 @@ while(cap.isOpened()):
     # Capture frame-by-frame
     ret, frame = cap.read()
     now = time.time()
-
     if ret == True:
         # We send this frame to GazeTracking to analyze it
         gaze.refresh(frame)
@@ -56,6 +55,24 @@ while(cap.isOpened()):
         # Annotating the frame with coordinates
         frame = gaze.annotated_frame()
         text = ""
+
+
+        milliseconds = cap.get(cv2.CAP_PROP_POS_MSEC)
+
+        seconds = milliseconds//1000
+        milliseconds = milliseconds%1000
+        minutes = 0
+        hours = 0
+        if seconds >= 60:
+            minutes = seconds//60
+            seconds = seconds % 60
+
+        if minutes >= 60:
+            hours = minutes//60
+            minutes = minutes % 60
+
+        print(int(hours), int(minutes), int(seconds), int(milliseconds))
+
 
         if gaze.is_blinking():
             text = "Blinking"
@@ -115,6 +132,3 @@ while(cap.isOpened()):
     else:
         break
 
-print(pupil_coord)
-print(pupil_coord_head_only)
-print(pupil_coord_eye_only)

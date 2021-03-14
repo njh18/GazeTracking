@@ -1,6 +1,11 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime
 
+def format_time(t):
+    if t.microsecond % 1000 >= 500:  # check if there will be rounding up
+        t = t + datetime.timedelta(milliseconds=1)  # manually round up
+    return t.strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
+
 def extractNames (video_name):
     '''
     Parameters
@@ -24,11 +29,10 @@ def extractNames (video_name):
     #Extracting timestamp and converting to datetime object
     timestamp = video_name[first_underscore+1:-4]
     date_object = datetime.strptime(timestamp,"%Y_%m_%d_%H_%M_%S")
+    date_object = format_time(date_object)
 
     #Save values into dictionary
     names['User'] = video_name[0:first_underscore]
     names['Timestamp'] = date_object
     
     return names
-
-
