@@ -57,6 +57,7 @@ def videoRotationMultiple(user, current_directory):
     rotated_folder = current_directory + "\\rotated"
     if os.path.exists(rotated_folder):
         list_of_video_names.remove("rotated")
+        return
     else:
         os.makedirs(rotated_folder)
 

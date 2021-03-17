@@ -13,19 +13,24 @@ import pandas as pd
 
 from videoRotation import videoRotationMultiple
 from extractNames import extractNames
+from extractPinCodes import extractPinCodes
 
 # Current user
 user = "JHprac"
 
 # Get current Directory
 current_directory = os.getcwd()
-folder_directory = "C:\\Users\\Jun Hso\\Documents\\GitHub\\GazeTracking\\Data" + "\\" + user
+folder_directory = "C:\\Users\\Jun Hso\\Desktop" + "\\" + user
 
 # Change directory to datasets to get data
 os.chdir(folder_directory)
 
 # Video rotation
 videoRotationMultiple(user, folder_directory)
+
+# Extract Pin Codes
+pinCodes = extractPinCodes(user, folder_directory)
+print(pinCodes)
 
 # Change to directory with rotated videos
 os.chdir(folder_directory+"\\rotated")
@@ -37,17 +42,18 @@ video_names_rotated.sort()
 print(video_names_rotated)  # CHECKPOINT
 
 # Create new dataframe for output
-column_names = ["Timeframe", "X-Coord (Both)", "Y-Coord (Both)",
+column_names = ["Pin Code", "Timeframe", "X-Coord (Both)", "Y-Coord (Both)",
                 "X-Coord (Head)", "Y-Coord (Head)", "X-Coord (Eye)", "Y-Coord (Eye)"]
 new_df = pd.DataFrame(columns=column_names)
 print(new_df)
 
 for num in range(len(video_names_rotated)):
-    df_name = user + str(num)
 
     # Just to check progress of loop
     print("processing " + str(num+1) + " out of " +
           str(len(video_names_rotated)) + " videos")
+
+    print("Current pin code is : %s" % (pinCodes[num]))
 
     # takes in a video
     cap = cv2.VideoCapture(video_names_rotated[num])
@@ -104,7 +110,7 @@ for num in range(len(video_names_rotated)):
                 eye_y = left_pupil_eye_only[1]
 
             # Input all the calcuated values into new dataframe
-            new_row = {"Timeframe": timeframe, "X-Coord (Both)": both_x, "Y-Coord (Both)": both_y,
+            new_row = {"Pin Code": pinCodes[num], "Timeframe": timeframe, "X-Coord (Both)": both_x, "Y-Coord (Both)": both_y,
                        "X-Coord (Head)": head_x, "Y-Coord (Head)": head_y, "X-Coord (Eye)": eye_x, "Y-Coord (Eye)": eye_y}
             new_df = new_df.append(new_row, ignore_index=True)
 
@@ -123,3 +129,5 @@ for num in range(len(video_names_rotated)):
     cv2.destroyAllWindows()
 
     print(new_df)
+
+print(new_df)

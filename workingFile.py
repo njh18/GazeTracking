@@ -21,9 +21,3 @@ if sensorsFile in video_names:
     print("filename removed")
 
 print(video_names)
-
-
-def extractPinCodes(textfile):
-    text_file = open(textfile, "r")
-    pin_codes = [line[:-1] for line in text_file]
-    return
