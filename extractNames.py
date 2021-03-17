@@ -1,12 +1,14 @@
 # -*- coding: utf-8 -*-
-from datetime import datetime
+from datetime import datetime as dt
+import datetime as datetime
 
-def format_time(t):
+def formatTime(t):
     if t.microsecond % 1000 >= 500:  # check if there will be rounding up
         t = t + datetime.timedelta(milliseconds=1)  # manually round up
     return t.strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
 
-def extractNames (video_name):
+
+def extractNames(video_name):
     '''
     Parameters
     ----------
@@ -19,20 +21,19 @@ def extractNames (video_name):
         'User' : Name of user that recorded video
         'Timestamp': Timestamp of the recorded video
     '''
-    #Create Dictionary
+    # Create Dictionary
     names = {}
-    
-    #finding the first underscore to extract the user
-    first_underscore = video_name.find("_")
-    
-    
-    #Extracting timestamp and converting to datetime object
-    timestamp = video_name[first_underscore+1:-4]
-    date_object = datetime.strptime(timestamp,"%Y_%m_%d_%H_%M_%S")
-    date_object = format_time(date_object)
 
-    #Save values into dictionary
+    # finding the first underscore to extract the user
+    first_underscore = video_name.find("_")
+    rotation = video_name.find("rotated")
+
+    # Extracting timestamp and converting to datetime object
+    timestamp = video_name[first_underscore+1:rotation-1]
+    date_object = dt.strptime(timestamp, "%Y_%m_%d_%H_%M_%S")
+
+    # Save values into dictionary
     names['User'] = video_name[0:first_underscore]
     names['Timestamp'] = date_object
-    
+
     return names

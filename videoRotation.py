@@ -55,9 +55,15 @@ def videoRotationMultiple(user, current_directory):
 
     # Creates a new folder for resizing
     rotated_folder = current_directory + "\\rotated"
+    video_names_rotated = []
+
     if os.path.exists(rotated_folder):
+        os.chdir(rotated_folder)
         list_of_video_names.remove("rotated")
-        return
+        video_names_rotated = os.listdir()
+        # all videos are rotated
+        if len(video_names_rotated) == len(list_of_video_names):
+            return
     else:
         os.makedirs(rotated_folder)
 
@@ -75,18 +81,19 @@ def videoRotationMultiple(user, current_directory):
         # rename video_name
         new_video_name = video_name[:-4]+"_rotated"+".mp4"
 
-        # changing the rotation of video
-        if clip1.rotation in (90, 270):
-            clip1 = clip1.resize(clip1.size[::-1])
-            clip1.rotation = 0
+        if new_video_name not in video_names_rotated:
+            # changing the rotation of video
+            if clip1.rotation in (90, 270):
+                clip1 = clip1.resize(clip1.size[::-1])
+                clip1.rotation = 0
 
-        # moving to folder to save video
-        os.chdir(rotated_folder)
+            # moving to folder to save video
+            os.chdir(rotated_folder)
 
-        # saving the video
-        clip1.write_videofile(new_video_name)
+            # saving the video
+            clip1.write_videofile(new_video_name)
 
-        print("------------------" + video_name +
-              " saved!" + "------------------")
+            print("------------------" + video_name +
+                  " rotated!" + "------------------")
 
     return

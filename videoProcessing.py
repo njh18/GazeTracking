@@ -10,9 +10,10 @@ from gaze_tracking import GazeTracking
 import matplotlib.pyplot as plt
 import time
 import pandas as pd
+import datetime
 
 from videoRotation import videoRotationMultiple
-from extractNames import extractNames
+from extractNames import extractNames, formatTime
 from extractPinCodes import extractPinCodes
 
 # Current user
@@ -42,7 +43,7 @@ video_names_rotated.sort()
 print(video_names_rotated)  # CHECKPOINT
 
 # Create new dataframe for output
-column_names = ["Pin Code", "Timeframe", "X-Coord (Both)", "Y-Coord (Both)",
+column_names = ["Pin Code", "Video Timestamp", "Time Passed", "X-Coord (Both)", "Y-Coord (Both)",
                 "X-Coord (Head)", "Y-Coord (Head)", "X-Coord (Eye)", "Y-Coord (Eye)"]
 new_df = pd.DataFrame(columns=column_names)
 print(new_df)
@@ -54,6 +55,10 @@ for num in range(len(video_names_rotated)):
           str(len(video_names_rotated)) + " videos")
 
     print("Current pin code is : %s" % (pinCodes[num]))
+
+    # Extracting timestamp from video_names_rotated
+    names = extractNames(video_names_rotated[num])
+    video_timestamp = names['Timestamp']
 
     # takes in a video
     cap = cv2.VideoCapture(video_names_rotated[num])
@@ -78,9 +83,6 @@ for num in range(len(video_names_rotated)):
 
             # Getting the timestamp of the frame in milliseconds
             milliseconds = cap.get(cv2.CAP_PROP_POS_MSEC)
-            seconds = milliseconds//1000
-            milliseconds = (milliseconds % 1000)/1000
-            timeframe = seconds + milliseconds
 
             # Initialising coordinates
             left_pupil = gaze.pupil_left_coords()
@@ -110,8 +112,10 @@ for num in range(len(video_names_rotated)):
                 eye_y = left_pupil_eye_only[1]
 
             # Input all the calcuated values into new dataframe
-            new_row = {"Pin Code": pinCodes[num], "Timeframe": timeframe, "X-Coord (Both)": both_x, "Y-Coord (Both)": both_y,
-                       "X-Coord (Head)": head_x, "Y-Coord (Head)": head_y, "X-Coord (Eye)": eye_x, "Y-Coord (Eye)": eye_y}
+            new_row = {"Pin Code": pinCodes[num], "Video Timestamp": video_timestamp, "Time Passed": milliseconds,
+                       "X-Coord (Both)": both_x, "Y-Coord (Both)": both_y,
+                       "X-Coord (Head)": head_x, "Y-Coord (Head)": head_y,
+                       "X-Coord (Eye)": eye_x, "Y-Coord (Eye)": eye_y}
             new_df = new_df.append(new_row, ignore_index=True)
 
             # Press Q on keyboard to  exit
@@ -130,4 +134,12 @@ for num in range(len(video_names_rotated)):
 
     print(new_df)
 
-print(new_df)
+
+# Cleaning Datafram
+tdelta = pd.to_timedelta(new_df["Time Passed"], unit="ms")
+new_df["Current Timestamp"] = new_df["Video Timestamp"] + tdelta
+new_df["Current Timestamp"] = new_df["Current Timestamp"].apply(formatTime)
+print(new_df['Current Timestamp'])
+
+pathName = "C:\\Users\\Jun Hso\\Desktop\\"
+new_df.to_csv(pathName + user + "_coordinates" + ".csv")

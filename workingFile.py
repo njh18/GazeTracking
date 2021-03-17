@@ -6,18 +6,18 @@ Created on Wed Feb 24 23:37:24 2021
 """
 
 import os
+import pandas as pd
+import datetime
+
+
+def format_time(t):
+    if t.microsecond % 1000 >= 500:  # check if there will be rounding up
+        # manually round up
+        t = t + datetime.datetime.timedelta(milliseconds=1)
+    return t.strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
+
 
 # get directory
-directory = "C:\\Users\\Jun Hso\\Documents\\GitHub\\GazeTracking\\Data\\JHprac"
-os.chdir(directory)
-video_names = os.listdir()
-print(video_names)
+df = pd.read_csv("C:\\Users\\Jun Hso\\Desktop\\JHprac_coordinates.csv")
 
-user = "JHprac"
-sensorsFile = user + "_Sensors"
-
-if sensorsFile in video_names:
-    video_names.remove(sensorsFile)
-    print("filename removed")
-
-print(video_names)
+print(df['Current Timestamp'].apply(format_time))
