@@ -12,8 +12,11 @@ import matplotlib.pyplot as plt
 import time
 
 from moviepy.editor import *
+
+# MY OWN FILE Programs
 from videoRotation import videoRotation
 from extractNames import extractNames
+from extractPinCodes import extractPinCodes
 
 # Change directory to datasets to get data
 os.chdir("C:\\Users\\Jun Hso\\Desktop")
@@ -24,7 +27,7 @@ current_directory = os.getcwd()
 video_name = "JHprac_2021_03_12_13_11_26.mp4"
 new_video_name = video_name[:-4]+"_rotated"+".mp4"
 
-#Getting Videoinformation
+# Getting Videoinformation
 video_info = extractNames(video_name)
 print(video_info)
 
@@ -50,8 +53,9 @@ start_time = time.time()
 
 
 # Create new dataframe for output
-column_names = ["Timeframe","X-Coord (Both)","Y-Coord (Both)","X-Coord (Head)","Y-Coord (Head)","X-Coord (Eye)","Y-Coord (Eye)"]
-new_df = pd.DataFrame(columns = column_names)
+column_names = ["Timeframe", "X-Coord (Both)", "Y-Coord (Both)",
+                "X-Coord (Head)", "Y-Coord (Head)", "X-Coord (Eye)", "Y-Coord (Eye)"]
+new_df = pd.DataFrame(columns=column_names)
 print(new_df)
 
 
@@ -71,13 +75,12 @@ while(cap.isOpened()):
         milliseconds = cap.get(cv2.CAP_PROP_POS_MSEC)
 
         seconds = milliseconds//1000
-        milliseconds = (milliseconds%1000)/1000
+        milliseconds = (milliseconds % 1000)/1000
         timeframe = seconds + milliseconds
-        
-        #forcombining with datetime
+
+        # forcombining with datetime
         #tdelta = pd.to_timedelta(df["Miliseconds"], unit="ms")
-        
-        
+
         if seconds >= 60:
             minutes = seconds//60
             seconds = seconds % 60
@@ -118,18 +121,15 @@ while(cap.isOpened()):
             eye_x = left_pupil_eye_only[0]
             eye_y = left_pupil_eye_only[1]
 
-  
         cv2.putText(frame, "Left pupil:  " + str(left_pupil), (90, 130),
                     cv2.FONT_HERSHEY_DUPLEX, 0.9, (147, 58, 31), 1)
 
-
         cv2.imshow("Demo", frame)
 
-
-        #Input all the calcuated values into new dataframe
-        new_row = {"Timeframe":timeframe,"X-Coord (Both)":both_x,"Y-Coord (Both)":both_y,
-                   "X-Coord (Head)":head_x,"Y-Coord (Head)":head_y,"X-Coord (Eye)":eye_x,"Y-Coord (Eye)":eye_y}
-        new_df = new_df.append(new_row,ignore_index=True)
+        # Input all the calcuated values into new dataframe
+        new_row = {"Timeframe": timeframe, "X-Coord (Both)": both_x, "Y-Coord (Both)": both_y,
+                   "X-Coord (Head)": head_x, "Y-Coord (Head)": head_y, "X-Coord (Eye)": eye_x, "Y-Coord (Eye)": eye_y}
+        new_df = new_df.append(new_row, ignore_index=True)
         # Press Q on keyboard to  exit
         if cv2.waitKey(25) & 0xFF == ord('q'):
             break

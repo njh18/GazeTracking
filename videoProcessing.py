@@ -26,7 +26,10 @@ videoRotationMultiple(folder_directory)
 os.chdir(folder_directory+"\\rotated")
 video_names_rotated = os.listdir()
 
-print(video_names_rotated)  # CHECKPOINT###
+# Sort video_names in case if they are not sorted in order
+video_names_rotated.sort()
+
+print(video_names_rotated)  # CHECKPOINT
 
 # This is to help with scaling of x and y axis
 # initialise variables
