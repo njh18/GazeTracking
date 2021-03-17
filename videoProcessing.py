@@ -21,7 +21,7 @@ user = "JHprac"
 
 # Get current Directory
 current_directory = os.getcwd()
-folder_directory = "C:\\Users\\Jun Hso\\Desktop" + "\\" + user
+folder_directory = "C:\\Users\\Jun Hso\\Documents\\GitHub\\GazeTracking\\Data" + "\\" + user
 
 # Change directory to datasets to get data
 os.chdir(folder_directory)

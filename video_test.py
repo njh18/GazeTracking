@@ -32,7 +32,7 @@ video_info = extractNames(video_name)
 print(video_info)
 
 # rotating the video
-video_rotation(video_name, current_directory)
+videoRotation(video_name, current_directory)
 
 # takes in a video
 os.chdir(current_directory+"\\rotated")
