@@ -35,7 +35,7 @@ def videoRotation(video_name, current_directory):
     return
 
 
-def videoRotationMultiple(current_directory):
+def videoRotationMultiple(user, current_directory):
 
     # Make sure it is in correct directory
     if os.getcwd() != current_directory:
@@ -43,6 +43,12 @@ def videoRotationMultiple(current_directory):
 
     # Get list of names in the directory
     list_of_video_names = os.listdir()
+
+    # Remove Sensorsfolder in list of video names
+    sensorsFile = user + "_Sensors"
+
+    if sensorsFile in list_of_video_names:
+        list_of_video_names.remove(sensorsFile)
 
     ###############REMOVE THIS NEXT TIME################
     print(list_of_video_names)
@@ -53,7 +59,7 @@ def videoRotationMultiple(current_directory):
         list_of_video_names.remove("rotated")
     else:
         os.makedirs(rotated_folder)
-        
+
     for video_name in list_of_video_names:
         print("------------------" + "Processing " +
               video_name + " now" + "------------------")

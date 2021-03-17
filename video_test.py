@@ -73,17 +73,12 @@ while(cap.isOpened()):
         text = ""
 
         milliseconds = cap.get(cv2.CAP_PROP_POS_MSEC)
-
         seconds = milliseconds//1000
         milliseconds = (milliseconds % 1000)/1000
         timeframe = seconds + milliseconds
 
         # forcombining with datetime
         #tdelta = pd.to_timedelta(df["Miliseconds"], unit="ms")
-
-        if seconds >= 60:
-            minutes = seconds//60
-            seconds = seconds % 60
 
         if gaze.is_blinking():
             text = "Blinking"
