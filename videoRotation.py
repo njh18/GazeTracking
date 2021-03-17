@@ -10,7 +10,7 @@ from moviepy.editor import *
 import os
 
 
-def video_rotation(video_name, current_directory):
+def videoRotation(video_name, current_directory):
     # Creates a new folder for resizing
     rotated_folder = current_directory + "\\rotated"
     if not os.path.exists(rotated_folder):
@@ -35,7 +35,7 @@ def video_rotation(video_name, current_directory):
     return
 
 
-def video_rotation_multiple(current_directory):
+def videoRotationMultiple(current_directory):
 
     # Make sure it is in correct directory
     if os.getcwd() != current_directory:

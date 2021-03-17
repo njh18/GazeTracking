@@ -22,8 +22,6 @@ print(list_of_names)
 df = pd.read_csv(list_of_names[0])
 
 
-
-
 #Change to datetime64[ns]
 df['time'] = pd.to_datetime(df['time'], unit='ns')
 

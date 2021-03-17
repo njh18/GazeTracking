@@ -9,7 +9,8 @@ import cv2
 from gaze_tracking import GazeTracking
 import matplotlib.pyplot as plt
 import time
-from video_rotation import video_rotation_multiple
+from videoRotation import videoRotationMultiple
+from extractNames import extractNames
 
 # Get current Directory
 current_directory = os.getcwd()
@@ -19,7 +20,7 @@ folder_directory = "C:\\Users\\Jun Hso\\Desktop\\Xiang"
 os.chdir(folder_directory)
 
 # Video rotation
-video_rotation_multiple(folder_directory)
+videoRotationMultiple(folder_directory)
 
 # Change to directory with rotated videos
 os.chdir(folder_directory+"\\rotated")

@@ -12,7 +12,7 @@ import matplotlib.pyplot as plt
 import time
 
 from moviepy.editor import *
-from video_rotation import video_rotation
+from videoRotation import videoRotation
 from extractNames import extractNames
 
 # Change directory to datasets to get data
