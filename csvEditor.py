@@ -11,25 +11,9 @@ import datetime
 import numpy as np
 
 # Change directory to datasets to get data
-os.chdir("C:\\Users\\Jun Hso\\Documents\\GitHub\\GazeTracking\\Data\\JHPrac\\JHprac_Sensors")
+os.chdir("C:\\Users\\Jun Hso\\Desktop\\JHPrac\\JHprac_Sensors")
 current_directory = os.getcwd()
 
-
-list_of_names = os.listdir()
-
-print(list_of_names)
-
-df = pd.read_csv(list_of_names[0])
-
-
-#Change to datetime64[ns]
-df['time'] = pd.to_datetime(df['time'], unit='ns')
-
-#Change to gmt +8
-df['time'] = df['time'] + pd.Timedelta('8 hour')
-
-time=df['time'][0]
-print(time)
 
 def format_time(t):
     if t.microsecond % 1000 >= 500:  # check if there will be rounding up
@@ -37,9 +21,30 @@ def format_time(t):
     return t.strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
 
 
+names = os.listdir()
+names.remove("Metadata.csv")
 
-df['time'] = df['time'].apply(format_time)
+# Create a Pandas Excel writer using XlsxWriter as the engine.
+writer = pd.ExcelWriter('compiled_sensors.xlsx', engine='xlsxwriter')
 
-print(df['time'].head())
-print(df['time'][0])
+# print(list_of_names[0][-4:])
+for sheet in names:
+    if sheet[-4:] == ".txt":
+        pass
+    else:
+        df = pd.read_csv(sheet)
 
+        # Change to datetime64[ns]
+        df['timestamp'] = pd.to_datetime(df['time'], unit='ns')
+
+        # Change to gmt +8
+        df['timestamp'] = df['timestamp'] + pd.Timedelta('8 hour')
+
+        # Convert into string
+        df['timestamp'] = df['timestamp'].apply(format_time)
+
+        print(df)
+
+        df.to_excel(writer, sheet_name=sheet[:-4])
+
+writer.save()
