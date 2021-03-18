@@ -9,7 +9,7 @@ import cv2
 from gaze_tracking import GazeTracking
 import matplotlib.pyplot as plt
 import time
-from video_rotation import video_rotation_multiple
+from videoRotation import videoRotationMultiple
 
 # Get current Directory
 current_directory = os.getcwd()
