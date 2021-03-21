@@ -18,6 +18,12 @@ def format_time(t):
 
 
 # get directory
-df = pd.read_csv("C:\\Users\\Jun Hso\\Desktop\\JHprac_coordinates.csv")
+coordDf = pd.read_csv("C:\\Users\\Jun Hso\\Documents\\GitHub\\GazeTracking\\Data\\JHprac\\JHprac_coordinates.csv")
 
-print(df['Current Timestamp'].apply(format_time))
+print(coordDf['Current Timestamp'].head)
+
+# get rest of files
+sheet_to_df_map = pd.read_excel("C:\\Users\\Jun Hso\\Documents\\GitHub\\GazeTracking\\Data\\JHprac\\JHprac_Sensors\\compiled_sensors.xlsx", sheet_name=None)
+
+mylist = sheet_to_df_map.keys()
+print(mylist)
