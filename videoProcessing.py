@@ -21,7 +21,7 @@ user = "JHprac"
 
 # Get current Directory
 current_directory = os.getcwd()
-folder_directory = "C:\\Users\\Jun Hso\\Documents\\GitHub\\GazeTracking\\Data" + "\\" + user
+folder_directory = "C:\\Users\\ngjun\\Documents\\GitHub\\GazeTracking\\Data" + "\\" + user
 
 # Change directory to datasets to get data
 os.chdir(folder_directory)
@@ -141,5 +141,5 @@ new_df["Current Timestamp"] = new_df["Video Timestamp"] + tdelta
 new_df["Current Timestamp"] = new_df["Current Timestamp"].apply(formatTime)
 print(new_df['Current Timestamp'])
 
-pathName = "C:\\Users\\Jun Hso\\Desktop\\"
+pathName = "C:\\Users\\ngjun\\desktop"
 new_df.to_csv(pathName + user + "_coordinates" + ".csv")

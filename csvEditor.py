@@ -11,7 +11,7 @@ import datetime
 import numpy as np
 
 # Change directory to datasets to get data
-os.chdir("C:\\Users\\Jun Hso\\Documents\\GitHub\\GazeTracking\\Data\\JHprac\\JHprac_Sensors")
+os.chdir("C:\\Users\\ngjun\\Documents\\GitHub\\GazeTracking\\Data\\JHprac\\JHprac_Sensors")
 current_directory = os.getcwd()
 
 
