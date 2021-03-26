@@ -26,10 +26,16 @@ def extractNames(video_name):
 
     # finding the first underscore to extract the user
     first_underscore = video_name.find("_")
-    rotation = video_name.find("rotated")
+    
+    if video_name.find("rotated") == -1:
+        rotation = -3
+    else:    
+        rotation = video_name.find("rotated")
+
 
     # Extracting timestamp and converting to datetime object
     timestamp = video_name[first_underscore+1:rotation-1]
+    print(timestamp)
     date_object = dt.strptime(timestamp, "%Y_%m_%d_%H_%M_%S")
 
     # Save values into dictionary

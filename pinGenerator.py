@@ -7,6 +7,7 @@ Created on Sat Mar  6 17:42:04 2021
 
 import random
 import pandas as pd
+import os
 
 def pinGenerator(num):
     counter = 0
@@ -46,13 +47,10 @@ while True:
         
 
 
+current_directory = os.getcwd()
+os.chdir(current_directory+"\\pinCodes")
 
 value = pinGenerator(val)
-
-
-#for i in value:
-#    print(i)
-
 
 #Write into txt
 with open(name+".txt",'w') as filehandle:

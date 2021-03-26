@@ -19,12 +19,12 @@ from extractNames import extractNames
 from extractPinCodes import extractPinCodes
 
 # Change directory to datasets to get data
-os.chdir("C:\\Users\\Jun Hso\\Desktop")
+os.chdir("C:\\Users\\ngjun\\Desktop\\videoTest\\")
 current_directory = os.getcwd()
 
 
 ######################Change this when necessary #################################
-video_name = "JHprac_2021_03_12_13_11_26.mp4"
+video_name = "Kelvin_2021_03_26_23_23_11.mp4"
 new_video_name = video_name[:-4]+"_rotated"+".mp4"
 
 # Getting Videoinformation
@@ -119,8 +119,8 @@ while(cap.isOpened()):
         cv2.putText(frame, "Left pupil:  " + str(left_pupil), (90, 130),
                     cv2.FONT_HERSHEY_DUPLEX, 0.9, (147, 58, 31), 1)
 
-        cv2.imshow("Demo", frame)
 
+        print(left_pupil)
         # Input all the calcuated values into new dataframe
         new_row = {"Timeframe": timeframe, "X-Coord (Both)": both_x, "Y-Coord (Both)": both_y,
                    "X-Coord (Head)": head_x, "Y-Coord (Head)": head_y, "X-Coord (Eye)": eye_x, "Y-Coord (Eye)": eye_y}
