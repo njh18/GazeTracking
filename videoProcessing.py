@@ -17,21 +17,22 @@ from extractNames import extractNames, formatTime
 from extractPinCodes import extractPinCodes
 
 # Current user
-user = "JHprac"
+user = "Glendon"
 
 # Get current Directory
 current_directory = os.getcwd()
-folder_directory = "C:\\Users\\ngjun\\Documents\\GitHub\\GazeTracking\\Data" + "\\" + user
+folder_directory = "F:\\DATA\\" + user
+
+
+# Extract Pin Codes
+pinCodes = extractPinCodes(user, current_directory+"\\pinCodes")
+print(pinCodes)
 
 # Change directory to datasets to get data
 os.chdir(folder_directory)
 
 # Video rotation
 videoRotationMultiple(user, folder_directory)
-
-# Extract Pin Codes
-pinCodes = extractPinCodes(user, folder_directory)
-print(pinCodes)
 
 # Change to directory with rotated videos
 os.chdir(folder_directory+"\\rotated")
@@ -141,5 +142,5 @@ new_df["Current Timestamp"] = new_df["Video Timestamp"] + tdelta
 new_df["Current Timestamp"] = new_df["Current Timestamp"].apply(formatTime)
 print(new_df['Current Timestamp'])
 
-pathName = "C:\\Users\\ngjun\\desktop"
+pathName = "C:\\Users\\ngjun\\desktop\\"
 new_df.to_csv(pathName + user + "_coordinates" + ".csv")
