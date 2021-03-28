@@ -99,7 +99,7 @@ for num in range(len(video_names_rotated)):
             right_pupil_head_only = gaze.pupil_right_coords_head_only()
             right_pupil_eye_only = gaze.pupil_right_coords_eye_only()
 
-            if gaze.pupils_located() == True:
+            if gaze.pupils_located is True:
                 #both movements
                 both_x_left = left_pupil[0]
                 both_y_left = left_pupil[1]
