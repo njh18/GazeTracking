@@ -71,7 +71,7 @@ def videoRotationMultiple(user, current_directory):
     for video_name in list_of_video_names:
         print("-------" + "Processing " +
               str(counter) + " out of " + str(len(list_of_video_names)) + " videos now" + "-------")
-
+        counter += 1
         # Making sure its in the right directory
         if os.getcwd() != current_directory:
             os.chdir(current_directory)

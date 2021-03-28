@@ -17,7 +17,7 @@ from extractNames import extractNames, formatTime
 from extractPinCodes import extractPinCodes
 
 # Current user
-user = "Glendon"
+user = "Ryan"
 
 # Get current Directory
 current_directory = os.getcwd()
@@ -25,7 +25,7 @@ folder_directory = "F:\\DATA\\" + user
 
 
 # Extract Pin Codes
-pinCodes = extractPinCodes(user, current_directory+"\\pinCodes")
+pinCodes = extractPinCodes(user, "F:\\DATA\\pinCodes")
 print(pinCodes)
 
 # Change directory to datasets to get data

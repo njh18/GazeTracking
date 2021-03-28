@@ -5,6 +5,7 @@ import os
 
 def extractPinCodes(user, directory):
     os.chdir(directory)
+    print(os.getcwd())
     pinCodeFile = user + ".txt"
 
     text_file = open(pinCodeFile, "r")
