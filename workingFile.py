@@ -10,7 +10,7 @@ from datetime import datetime,timedelta
 from itertools import islice
 import os
 import random
-
+from extractPinCodes import extractPinCodes
 
 def format_time(t):
     if t.microsecond % 1000 >= 500:  # check if there will be rounding up
@@ -25,11 +25,10 @@ def calcTimeDiff(dateobject1,dateobject2):
 
 
 # get csv files
-coordDf = pd.read_csv("C:\\Users\\ngjun\\Desktop\\Glendon_coordinates.csv")
-
+coordDf = pd.read_csv("C:\\Users\\ngjun\\Desktop\\compiledCoordinates\\Ryan_coordinates.csv")
+pinCodes = extractPinCodes("Ryan", "F:\\DATA\\pinCodes")
 print(coordDf.head())
 
-pinCodes = coordDf['Pin Code'].unique()
 print(pinCodes)
 print(len(pinCodes))
 
@@ -37,7 +36,8 @@ errors = []
 for i in range(len(pinCodes)):
   sampleDf = coordDf[coordDf['Pin Code'] == pinCodes[i]]
   sampleDfZero = sampleDf[sampleDf['Left X-Coord (Both)'] == 0]
-  error = round(sampleDfZero.shape[0]/sampleDf.shape[0],2)
-  errors.append((pinCodes[i],error))
+  error = round(sampleDfZero.shape[0]*100/sampleDf.shape[0],2)
+  if error >= 10:
+    errors.append((pinCodes[i],error))
 
 print(errors)

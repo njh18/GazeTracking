@@ -16,8 +16,11 @@ from videoRotation import videoRotationMultiple
 from extractNames import extractNames, formatTime
 from extractPinCodes import extractPinCodes
 
+#list of users
+userList = []
+
 # Current user
-user = "Ryan"
+user = "Felix"
 
 # Get current Directory
 current_directory = os.getcwd()
@@ -162,5 +165,5 @@ new_df["Current Timestamp"] = new_df["Video Timestamp"] + tdelta
 new_df["Current Timestamp"] = new_df["Current Timestamp"].apply(formatTime)
 print(new_df['Current Timestamp'])
 
-pathName = "C:\\Users\\ngjun\\desktop\\"
+pathName = "C:\\Users\\ngjun\\desktop\\compiledCoordinates\\"
 new_df.to_csv(pathName + user + "_coordinates" + ".csv")
