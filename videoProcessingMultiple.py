@@ -20,15 +20,14 @@ from extractPinCodes import extractPinCodes
 userList = ['ShengRong', 'JingYi', 'YanRu', 'Winnchis', 'Xavier', 'ZhiYu', 'FungRu', 'Clarence', 'Kelvin', 'PekKoon', 'WeiSheng']
 
 for user in userList:
+    print("Current user is %s" %(user))
     # Get current Directory
     current_directory = os.getcwd()
     folder_directory = "F:\\DATA\\" + user
     
-    
     # Extract Pin Codes
     pinCodes = extractPinCodes(user, "F:\\DATA\\pinCodes")
-    print(pinCodes)
-    
+
     # Change directory to datasets to get data
     os.chdir(folder_directory)
     
@@ -153,15 +152,11 @@ for user in userList:
     
         # Closes all the frames
         cv2.destroyAllWindows()
-    
-        print(new_df)
-    
-    
+        
+    print(new_df)
     # Cleaning Datafram
     tdelta = pd.to_timedelta(new_df["Time Passed"], unit="ms")
     new_df["Current Timestamp"] = new_df["Video Timestamp"] + tdelta
     new_df["Current Timestamp"] = new_df["Current Timestamp"].apply(formatTime)
-    print(new_df['Current Timestamp'])
-    
     pathName = "C:\\Users\\ngjun\\desktop\\compiledCoordinates\\"
     new_df.to_csv(pathName + user + "_coordinates" + ".csv")
