@@ -92,7 +92,7 @@ def videoRotationMultiple(user, current_directory):
             os.chdir(rotated_folder)
 
             # saving the video
-            clip1.write_videofile(new_video_name)
+            clip1.write_videofile(new_video_name, audio = False, threads = 8)
 
             print("------------------" + video_name +
                   " rotated!" + "------------------")

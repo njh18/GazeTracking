@@ -24,20 +24,12 @@ current_directory = os.getcwd()
 
 
 ######################Change this when necessary #################################
-video_name = "Alphaeus_2021_03_29_11_00_55.mp4"
-new_video_name = video_name[:-4]+"_rotated"+".mp4"
+video_name = "JH_2021_03_29_12_18_15.mp4"
+
 
 # Getting Videoinformation
 video_info = extractNames(video_name)
-print(video_info)
-
-# rotating the video
-videoRotation(video_name, current_directory)
-
-# takes in a video
-os.chdir(current_directory+"\\rotated")
-
-cap = cv2.VideoCapture(new_video_name)
+cap = cv2.VideoCapture(video_name)
 gaze = GazeTracking()
 
 
@@ -128,7 +120,6 @@ while(cap.isOpened()):
         # Press Q on keyboard to  exit
         if cv2.waitKey(25) & 0xFF == ord('q'):
             break
-
     # break the loop
     else:
         break

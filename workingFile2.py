@@ -13,3 +13,5 @@ from extractPinCodes import extractPinCodes
 
 os.chdir("F:\\DATA\\")
 print(os.listdir())
+
+['ShengRong', 'JingYi', 'YanRu', 'Winnchis', 'Xavier', 'ZhiYu', 'FungRu', 'Clarence', 'Kelvin', 'PekKoon', 'WeiSheng']

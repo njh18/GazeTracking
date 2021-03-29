@@ -25,19 +25,17 @@ def calcTimeDiff(dateobject1,dateobject2):
 
 
 # get csv files
-coordDf = pd.read_csv("C:\\Users\\ngjun\\Desktop\\compiledCoordinates\\Ryan_coordinates.csv")
-pinCodes = extractPinCodes("Ryan", "F:\\DATA\\pinCodes")
-print(coordDf.head())
+coordDf = pd.read_csv("C:\\Users\\ngjun\\Desktop\\compiledCoordinates\\ShengRong_coordinates.csv")
+pinCodes = coordDf['Pin Code'].unique()
 
-print(pinCodes)
-print(len(pinCodes))
 
 errors = []
 for i in range(len(pinCodes)):
   sampleDf = coordDf[coordDf['Pin Code'] == pinCodes[i]]
   sampleDfZero = sampleDf[sampleDf['Left X-Coord (Both)'] == 0]
   error = round(sampleDfZero.shape[0]*100/sampleDf.shape[0],2)
+  print(error)
   if error >= 10:
-    errors.append((pinCodes[i],error))
+    errors.append((pinCodes[i],i,error))
 
 print(errors)

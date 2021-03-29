@@ -17,7 +17,7 @@ from extractNames import extractNames, formatTime
 from extractPinCodes import extractPinCodes
 
 #list of users
-userList = ['ShengRong', 'JingYi', 'YanRu', 'Winnchis', 'Xavier', 'ZhiYu', 'FungRu', 'Clarence', 'Kelvin', 'PekKoon', 'WeiSheng']
+userList = ['YanRu', 'Winnchis', 'Xavier', 'ZhiYu', 'FungRu', 'Clarence', 'Kelvin', 'PekKoon', 'WeiSheng']
 
 for user in userList:
     print("Current user is %s" %(user))

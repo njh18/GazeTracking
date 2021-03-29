@@ -20,7 +20,7 @@ from extractPinCodes import extractPinCodes
 userList = []
 
 # Current user
-user = "Felix"
+user = "Xavier"
 
 # Get current Directory
 current_directory = os.getcwd()
@@ -156,7 +156,7 @@ for num in range(len(video_names_rotated)):
     # Closes all the frames
     cv2.destroyAllWindows()
 
-    print(new_df)
+print(new_df)
 
 
 # Cleaning Datafram
