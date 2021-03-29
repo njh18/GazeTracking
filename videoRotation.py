@@ -22,16 +22,19 @@ def videoRotation(video_name, current_directory):
     # rename video_name
     new_video_name = video_name[:-4]+"_rotated"+".mp4"
 
-    # changing the rotation of video
-    if clip1.rotation in (90, 270):
-        clip1 = clip1.resize(clip1.size[::-1])
-        clip1.rotation = 0
-
-    # moving to folder to save video
-    os.chdir(rotated_folder)
-
-    # saving the video
-    clip1.write_videofile(new_video_name)
+    if clip1.fps >120:
+        print(video_name + " is faulty")
+    else:
+        # changing the rotation of video
+        if clip1.rotation in (90, 270):
+            clip1 = clip1.resize(clip1.size[::-1])
+            clip1.rotation = 0
+    
+        # moving to folder to save video
+        os.chdir(rotated_folder)
+    
+        # saving the video
+        clip1.write_videofile(new_video_name)
     return
 
 
@@ -43,7 +46,8 @@ def videoRotationMultiple(user, current_directory):
 
     # Get list of names in the directory
     list_of_video_names = os.listdir()
-
+    list_of_video_names.sort()
+    
     # Remove Sensorsfolder in list of video names
     sensorsFile = user + "_Sensors"
 
@@ -52,6 +56,7 @@ def videoRotationMultiple(user, current_directory):
 
     ###############REMOVE THIS NEXT TIME################
     print(list_of_video_names)
+    print(len(list_of_video_names))
 
     # Creates a new folder for resizing
     rotated_folder = current_directory + "\\rotated"
@@ -67,11 +72,11 @@ def videoRotationMultiple(user, current_directory):
     else:
         os.makedirs(rotated_folder)
     
-    counter = 1
+    counter = 0
+    faulty_videos = []
     for video_name in list_of_video_names:
         print("-------" + "Processing " +
-              str(counter) + " out of " + str(len(list_of_video_names)) + " videos now" + "-------")
-        counter += 1
+              str(counter+1) + " out of " + str(len(list_of_video_names)) + " videos now" + "-------")
         # Making sure its in the right directory
         if os.getcwd() != current_directory:
             os.chdir(current_directory)
@@ -81,20 +86,29 @@ def videoRotationMultiple(user, current_directory):
 
         # rename video_name
         new_video_name = video_name[:-4]+"_rotated"+".mp4"
+        
+        if clip1.fps >120:
+            print(video_name + " is faulty")
+            print(counter)
+            faulty_videos.append(counter)
+        else:
+            if new_video_name not in video_names_rotated:
+                # changing the rotation of video
+                if clip1.rotation in (90, 270):
+                    clip1 = clip1.resize(clip1.size[::-1])
+                    clip1.rotation = 0
+    
+                # moving to folder to save video
+                os.chdir(rotated_folder)
+    
+                # saving the video
+                clip1.write_videofile(new_video_name, audio = False, threads = 4)
+    
+                print("------------------" + video_name +
+                      " rotated!" + "------------------")
+            else:
+                print("Video already rotated!")
 
-        if new_video_name not in video_names_rotated:
-            # changing the rotation of video
-            if clip1.rotation in (90, 270):
-                clip1 = clip1.resize(clip1.size[::-1])
-                clip1.rotation = 0
-
-            # moving to folder to save video
-            os.chdir(rotated_folder)
-
-            # saving the video
-            clip1.write_videofile(new_video_name, audio = False, threads = 8)
-
-            print("------------------" + video_name +
-                  " rotated!" + "------------------")
-
-    return
+        counter += 1
+        
+    return faulty_videos

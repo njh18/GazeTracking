@@ -51,7 +51,7 @@ current_directory = os.getcwd()
 os.chdir(current_directory+"\\pinCodes")
 
 value = pinGenerator(val)
-
+print(value)
 #Write into txt
 with open(name+".txt",'w') as filehandle:
     for num in value:

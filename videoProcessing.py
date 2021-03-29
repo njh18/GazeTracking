@@ -38,7 +38,8 @@ print(pinCodes)
 os.chdir(folder_directory)
 
 # Video rotation
-videoRotationMultiple(user, folder_directory)
+faulty_videos = videoRotationMultiple(user, folder_directory)
+print(faulty_videos)
 
 # Change to directory with rotated videos
 os.chdir(folder_directory+"\\rotated")
@@ -58,106 +59,108 @@ new_df = pd.DataFrame(columns=column_names)
 print(new_df)
 
 for num in range(len(video_names_rotated)):
-
-    # Just to check progress of loop
-    print("processing " + str(num+1) + " out of " +
-          str(len(video_names_rotated)) + " videos")
-
-    print("Current pin code is : %s" % (pinCodes[num]))
-
-    # Extracting timestamp from video_names_rotated
-    names = extractNames(video_names_rotated[num])
-    video_timestamp = names['Timestamp']
-
-#### inputs needed
-#### video_name
-#### new_df
-
-    # takes in a video
-    cap = cv2.VideoCapture(video_names_rotated[num])
-    gaze = GazeTracking()
-
-    # Check if camera opened successfully
-    if (cap.isOpened() == False):
-        print("Error opening video stream or file")
-
-    # Read until video is completed
-    while(cap.isOpened()):
-        # Capture frame-by-frame
-        ret, frame = cap.read()
-        now = time.time()
-
-        if ret == True:
-            # We send this frame to GazeTracking to analyze it
-            gaze.refresh(frame)
-
-            # Annotating the frame with coordinates
-            frame = gaze.annotated_frame()
-
-            # Getting the timestamp of the frame in milliseconds
-            milliseconds = cap.get(cv2.CAP_PROP_POS_MSEC)
-
-            # Initialising coordinates
-            left_pupil = gaze.pupil_left_coords()
-            left_pupil_head_only = gaze.pupil_left_coords_head_only()
-            left_pupil_eye_only = gaze.pupil_left_coords_eye_only()
-            right_pupil = gaze.pupil_right_coords()
-            right_pupil_head_only = gaze.pupil_right_coords_head_only()
-            right_pupil_eye_only = gaze.pupil_right_coords_eye_only()
-
-            if gaze.pupils_located is True:
-                #both movements
-                both_x_left = left_pupil[0]
-                both_y_left = left_pupil[1]
-                both_x_right = right_pupil[0]
-                both_y_right = right_pupil[1]
-                #Head Movements only
-                head_x_left = left_pupil_head_only[0]
-                head_y_left = left_pupil_head_only[1]
-                head_x_right = right_pupil_head_only[0]
-                head_y_right = right_pupil_head_only[1]
-                #Eye Movements only
-                eye_x_left = left_pupil_eye_only[0]
-                eye_y_left = left_pupil_eye_only[1]
-                eye_x_right = right_pupil_eye_only[0]
-                eye_y_right = right_pupil_eye_only[1]
+    if video_names_rotated[num] in ['Xavier_2021_03_26_00_11_09_rotated']:
+        print("faultly video")
+    else:
+        # Just to check progress of loop
+        print("processing " + str(num+1) + " out of " +
+              str(len(video_names_rotated)) + " videos")
+    
+        print("Current pin code is : %s" % (pinCodes[num]))
+    
+        # Extracting timestamp from video_names_rotated
+        names = extractNames(video_names_rotated[num])
+        video_timestamp = names['Timestamp']
+    
+    #### inputs needed
+    #### video_name
+    #### new_df
+    
+        # takes in a video
+        cap = cv2.VideoCapture(video_names_rotated[num])
+        gaze = GazeTracking()
+    
+        # Check if camera opened successfully
+        if (cap.isOpened() == False):
+            print("Error opening video stream or file")
+    
+        # Read until video is completed
+        while(cap.isOpened()):
+            # Capture frame-by-frame
+            ret, frame = cap.read()
+            now = time.time()
+    
+            if ret == True:
+                # We send this frame to GazeTracking to analyze it
+                gaze.refresh(frame)
+    
+                # Annotating the frame with coordinates
+                frame = gaze.annotated_frame()
+    
+                # Getting the timestamp of the frame in milliseconds
+                milliseconds = cap.get(cv2.CAP_PROP_POS_MSEC)
+    
+                # Initialising coordinates
+                left_pupil = gaze.pupil_left_coords()
+                left_pupil_head_only = gaze.pupil_left_coords_head_only()
+                left_pupil_eye_only = gaze.pupil_left_coords_eye_only()
+                right_pupil = gaze.pupil_right_coords()
+                right_pupil_head_only = gaze.pupil_right_coords_head_only()
+                right_pupil_eye_only = gaze.pupil_right_coords_eye_only()
+    
+                if gaze.pupils_located is True:
+                    #both movements
+                    both_x_left = left_pupil[0]
+                    both_y_left = left_pupil[1]
+                    both_x_right = right_pupil[0]
+                    both_y_right = right_pupil[1]
+                    #Head Movements only
+                    head_x_left = left_pupil_head_only[0]
+                    head_y_left = left_pupil_head_only[1]
+                    head_x_right = right_pupil_head_only[0]
+                    head_y_right = right_pupil_head_only[1]
+                    #Eye Movements only
+                    eye_x_left = left_pupil_eye_only[0]
+                    eye_y_left = left_pupil_eye_only[1]
+                    eye_x_right = right_pupil_eye_only[0]
+                    eye_y_right = right_pupil_eye_only[1]
+                else:
+                    both_x_left = 0
+                    both_y_left = 0
+                    both_x_right = 0
+                    both_y_right = 0
+                    head_x_left = 0
+                    head_y_left = 0
+                    head_x_right = 0
+                    head_y_right = 0
+                    eye_x_left = 0
+                    eye_y_left = 0
+                    eye_x_right = 0
+                    eye_y_right = 0
+    
+                # Input all the calcuated values into new dataframe
+                new_row = {"Pin Code": pinCodes[num], "Video Timestamp": video_timestamp, "Time Passed": milliseconds,
+                           "Left X-Coord (Both)": both_x_left, "Left Y-Coord (Both)": both_y_left,
+                           "Right X-Coord (Both)": both_x_right, "Right Y-Coord (Both)": both_y_right, 
+                           "Left X-Coord (Head)": head_x_left, "Left Y-Coord (Head)": head_y_left, 
+                           "Right X-Coord (Head)": head_x_right , "Right Y-Coord (Head)": head_y_right, 
+                           "Left X-Coord (Eye)": eye_x_left, "Left Y-Coord (Eye)": eye_y_left,
+                           "Right X-Coord (Eye)": eye_x_right, "Right Y-Coord (Eye)": eye_y_right}
+                new_df = new_df.append(new_row, ignore_index=True)
+                
+                # Press Q on keyboard to  exit
+                if cv2.waitKey(25) & 0xFF == ord('q'):
+                    break
+            # break the loop
             else:
-                both_x_left = 0
-                both_y_left = 0
-                both_x_right = 0
-                both_y_right = 0
-                head_x_left = 0
-                head_y_left = 0
-                head_x_right = 0
-                head_y_right = 0
-                eye_x_left = 0
-                eye_y_left = 0
-                eye_x_right = 0
-                eye_y_right = 0
-
-            # Input all the calcuated values into new dataframe
-            new_row = {"Pin Code": pinCodes[num], "Video Timestamp": video_timestamp, "Time Passed": milliseconds,
-                       "Left X-Coord (Both)": both_x_left, "Left Y-Coord (Both)": both_y_left,
-                       "Right X-Coord (Both)": both_x_right, "Right Y-Coord (Both)": both_y_right, 
-                       "Left X-Coord (Head)": head_x_left, "Left Y-Coord (Head)": head_y_left, 
-                       "Right X-Coord (Head)": head_x_right , "Right Y-Coord (Head)": head_y_right, 
-                       "Left X-Coord (Eye)": eye_x_left, "Left Y-Coord (Eye)": eye_y_left,
-                       "Right X-Coord (Eye)": eye_x_right, "Right Y-Coord (Eye)": eye_y_right}
-            new_df = new_df.append(new_row, ignore_index=True)
-
-            # Press Q on keyboard to  exit
-            if cv2.waitKey(25) & 0xFF == ord('q'):
                 break
-
-        # break the loop
-        else:
-            break
-
-    # When everything done, release the video capture object
-    cap.release()
-
-    # Closes all the frames
-    cv2.destroyAllWindows()
+    
+        # When everything done, release the video capture object
+        cap.release()
+    
+        # Closes all the frames
+        cv2.destroyAllWindows()
+        print(new_df)
 
 print(new_df)
 
