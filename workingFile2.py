@@ -13,30 +13,7 @@ from extractPinCodes import extractPinCodes
 from moviepy.editor import *
 from videoRotation import videoRotation
 
-os.chdir("E:\\DATA\\Felix")
-felix = os.listdir()
-felix.sort()
-print(felix)
-print(felix.index("Felix_2021_03_25_14_36_26.mp4"))
 
-#['ShengRong', 'JingYi', 'YanRu', 'Winnchis', 'Xavier', 'ZhiYu', 'FungRu', 'Clarence', 'Kelvin', 'PekKoon', 'WeiSheng']
+thelist = {'Felix': ['6835'], 'JingYi': ['8210', '8579', '3314', '3996', '5819', '0397', '9358', '9319', '0696', '3070', '5557', '3960', '0292', '7705', '0845', '5717', '2512', '3529', '8400', '4130', '1514', '1989', '1626', '2731', '5321', '9489', '2639', '7693', '0059', '7075', '0766', '5616', '6843', '9811', '5764', '4886', '4903', '8213', '5535', '8660', '2280', '2349', '4924', '7488', '0643', '0765', '9230', '9063', '7733', '3677', '7051', '0368', '6532', '3959'], 'YanRu': ['0328', '1431', '5686', '7861', '0173', '6111', '3556', '9571', '0858', '0288', '8846', '1414', '1315', '6577', '5972', '9453', '5400', '7664', '8726', '8215', '7479', '2315', '5580', '6498', '8861', '7954', '2794', '4713', '2549', '6064', '2303', '6219', '5134', '8957', '0801', '6361', '2380', '2009', '6005', '7652', '9178', '8274', '4124', '4943', '3562', '2894', '6056', '3233', '9428', '6998', '6105', '3865', '1133', '9850', '4992', '9212', '9942', '4465', '1187', '0428', '9013', '3475', '1166', '7005', '6353', '2303', '8523', '9456', '2817', '7032'], 'Winnchis': ['3404', '8675', '4380', '8716', '1076', '3475', '6949', '6139', '2876', '4756', '7094'], 'ZhiYu': [], 'FungRu': [], 'Clarence': [], 'Kelvin': [], 'PekKoon': [], 'WeiSheng': []}
 
-os.chdir("C:\\Users\\ngjun\\OneDrive\\Desktop\\videoTest")
-
-video_name = "Xavier_2021_03_26_00_11_03.mp4"
-
-clip1 = VideoFileClip(video_name)
-
-print("Duration: " + str(clip1.duration))
-print(clip1.fps)
-
-
-video_name_faulty = Felix_2021_03_25_14_36_26.mp4
-
-clip2 = VideoFileClip(video_name_faulty)
-
-print("Duration: " + str(clip2.duration))
-print(clip2.fps)
-
-
-
+print(len(thelist['YanRu']))

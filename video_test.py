@@ -19,13 +19,13 @@ from extractNames import extractNames
 from extractPinCodes import extractPinCodes
 
 # Change directory to datasets to get data
-os.chdir("C:\\Users\\ngjun\\OneDrive\\Desktop\\videoTest\\") #glen com
-#os.chdir("C:\\Users\\ngjun\\Desktop\\videoTest\\")
+#os.chdir("C:\\Users\\ngjun\\OneDrive\\Desktop\\videoTest\\") #glen com
+os.chdir("C:\\Users\\ngjun\\Desktop\\videoTest\\")
 current_directory = os.getcwd()
 
 
 ######################Change this when necessary #################################
-video_name = "Ryan_2021_03_24_23_33_28.mp4"
+video_name = "JiHui_2021_03_31_10_15_45.mp4"
 new_video_name = video_name[:-4]+"_rotated"+".mp4"
 
 # Getting Videoinformation

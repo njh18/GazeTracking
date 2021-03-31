@@ -20,17 +20,17 @@ from extractPinCodes import extractPinCodes
 userList = []
 
 # Current user
-user = "Xavier"
+user = "JiHui"
 
 # Get current Directory
 current_directory = os.getcwd()
 
-folder_directory = "E:\\DATA\\" + user
+folder_directory = "F:\\DATA\\" + user
 #folder_directory = "F:\\DATA\\" + user #glen com
 
 
 # Extract Pin Codes
-pinCodes = extractPinCodes(user, "E:\\DATA\\pinCodes") #glen com
+pinCodes = extractPinCodes(user, "F:\\DATA\\pinCodes") #glen com
 #pinCodes = extractPinCodes(user, "F:\\DATA\\pinCodes")
 print(pinCodes)
 
@@ -171,6 +171,6 @@ new_df["Current Timestamp"] = new_df["Video Timestamp"] + tdelta
 new_df["Current Timestamp"] = new_df["Current Timestamp"].apply(formatTime)
 print(new_df['Current Timestamp'])
 
-pathName = "C:\\Users\\ngjun\\OneDrive\\Desktop\\compiledCoordinates\\" #glen com
-#pathName = "C:\\Users\\ngjun\\desktop\\compiledCoordinates\\"
+#pathName = "C:\\Users\\ngjun\\OneDrive\\Desktop\\compiledCoordinates\\" #glen com
+pathName = "C:\\Users\\ngjun\\desktop\\compiledCoordinates\\"
 new_df.to_csv(pathName + user + "_coordinates" + ".csv")
