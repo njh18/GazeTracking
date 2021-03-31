@@ -24,7 +24,7 @@ def calcTimeDiff(dateobject1,dateobject2):
   return timeDiffMs
 
 #Get User
-user = "JiHui"
+user = "WenJie"
 
 # get csv files
 coordDf = pd.read_csv("C:\\Users\\ngjun\\Desktop\\compiledCoordinates\\"+ user +"_coordinates.csv")
