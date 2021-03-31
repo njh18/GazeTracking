@@ -64,7 +64,7 @@ for pincode in userList:
     pinCodes.remove(pincode)
     pinCodes.append(pincode)
         
-os.chdir("C:\\Users\\ngjun\\Desktop")
+os.chdir("C:\\Users\\ngjun\\Desktop\\")
 #Write into txt
 with open(user+"_updated.txt",'w') as filehandle:
     for num in pinCodes:
