@@ -14,7 +14,7 @@ userFaulty={}
 #list of users
 userList = []
 
-user = 'CiEn'
+user = 'ShiYu'
 
 # Get current Directory
 current_directory = os.getcwd()
@@ -24,9 +24,9 @@ folder_directory = "F:\\DATA\\" + user
         
 # Extract Pin Codes
 try:
-    pinCodes = extractPinCodes(user +"_updated", "C:\\Users\\ngjun\\Desktop\\") #glen com
+    pinCodes = extractPinCodes(user +"_updated", "C:\\Users\\ngjun\\Desktop\\Pin Codes after Fast Test\\") #glen com
 except FileNotFoundError:
-    pinCodes = extractPinCodes(user, "C:\\Users\\ngjun\\Desktop\\")
+    pinCodes = extractPinCodes(user, "C:\\Users\\ngjun\\Desktop\\Pin Codes after Fast Test\\")
     
 print(pinCodes)
     

@@ -64,7 +64,7 @@ for pincode in pinCodesNew:
 os.chdir("C:\\Users\\ngjun\\Desktop\\Final Pin Code Updates\\")
 with open(user+"_left.txt",'w') as filehandle:
     for num in pinCodesNew:
-        filehandle.write("%s\n"%num)
+        filehandle.write("%s\n"%num)    
     
 with open(user+"_updated.txt",'w') as filehandle:
     for num in pinCodes_original:

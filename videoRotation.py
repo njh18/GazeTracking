@@ -110,6 +110,7 @@ def videoRotationMultiple(user, current_directory):
                 print("Video already rotated!")
 
         counter += 1
+        clip1.close()
         
     return faulty_videos
 
@@ -160,5 +161,6 @@ def videoRotationTest(user,current_directory):
             faulty_videos.append((counter,video_name))
 
         counter += 1
+        clip1.close()
         
     return faulty_videos

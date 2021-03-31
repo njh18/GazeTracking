@@ -14,7 +14,7 @@ userFaulty={}
 #list of users
 userList = []
 
-user = 'CiEn'
+user = 'YingYi'
 
 # Get current Directory
 current_directory = os.getcwd()
@@ -43,7 +43,7 @@ os.chdir(folder_directory)
 # 
 firstCounter = 0
 secondCounter = 0
-
+faultyVideoNames = []
 for index in faulty_videos:
     if index[0] > 99:
         current = index[0] - 100
@@ -52,20 +52,23 @@ for index in faulty_videos:
     else:
         current = index[0]
         userList.append(pinCodes[current])
-        os.remove(index[1])
+        faultyVideoNames.append(index[1])
         firstCounter += 1
 
 print(userList)
 #userFaulty[user] = userList
 print(firstCounter)
 print(secondCounter)
-
+print(faultyVideoNames)
 pinCodesNew = []
 # appends pinCodes
 for pincode in userList:
     pinCodes.remove(pincode)
     pinCodesNew.append(pincode)
 
+#remove all videos
+for video in faultyVideoNames:
+    os.remove(video)
     
         
 os.chdir("C:\\Users\\ngjun\\Desktop\\Pin Codes after Fast Test\\")
