@@ -24,13 +24,13 @@ def calcTimeDiff(dateobject1,dateobject2):
   return timeDiffMs
 
 #Get User
-user = "WenJie"
+user = "CiEn"
 
 # get csv files
 coordDf = pd.read_csv("C:\\Users\\ngjun\\Desktop\\compiledCoordinates\\"+ user +"_coordinates.csv")
 pinCodes = coordDf['Pin Code'].unique()
 
-
+####### Finding out the number of errors
 errors = []
 for i in range(len(pinCodes)):
   sampleDf = coordDf[coordDf['Pin Code'] == pinCodes[i]]
@@ -42,17 +42,31 @@ for i in range(len(pinCodes)):
 print(errors)
 print(len(errors))
 
-#### OUTPUT THE DATA into a txt file to re-record
+####### OUTPUT THE DATA into a txt file to re-record
 
-# Extract Pin Codes
-pinCodes_original = extractPinCodes(user, "F:\\DATA\\pinCodes")
-
+# Extract Pin Codes, Either the updated one or the non updated one
+try:
+    pinCodes_original  = extractPinCodes(user +"_updated", "F:\\DATA\\pinCodes") #glen com
+except FileNotFoundError:
+    pinCodes_original  = extractPinCodes(user, "F:\\DATA\\pinCodes")
+    
+# Put all the pincodes with erorr in a list
 pinCodesNew = []
 for value in errors:
-    pinCodesNew.append(pinCodes_original[value[1]])    
+    pinCodesNew.append(pinCodes_original[value[1]])
+    
+# Remove pinCode Errors from list
+for pincode in pinCodesNew:
+    pinCodes_original.remove(pincode)
 
-os.chdir("C:\\Users\\ngjun\\Desktop")
-#Write into txt
+
+######################### WRITING INTO TEXT FILES #####################################
+os.chdir("C:\\Users\\ngjun\\Desktop\\Final Pin Code Updates\\")
 with open(user+"_left.txt",'w') as filehandle:
     for num in pinCodesNew:
         filehandle.write("%s\n"%num)
+    
+with open(user+"_updated.txt",'w') as filehandle:
+    for num in pinCodes_original:
+        filehandle.write("%s\n"%num)        
+        

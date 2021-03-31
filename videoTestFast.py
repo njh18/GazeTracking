@@ -23,7 +23,12 @@ current_directory = os.getcwd()
 folder_directory = "F:\\DATA\\" + user
         
 # Extract Pin Codes
-pinCodes = extractPinCodes(user, "F:\\DATA\\pinCodes") #glen com
+try:
+    pinCodes = extractPinCodes(user +"_updated", "F:\\DATA\\pinCodes") #glen com
+except FileNotFoundError:
+    pinCodes = extractPinCodes(user, "F:\\DATA\\pinCodes")
+    
+print(pinCodes)
         
 # Change directory to datasets to get data
 os.chdir(folder_directory)
@@ -47,6 +52,7 @@ for index in faulty_videos:
     else:
         current = index[0]
         userList.append(pinCodes[current])
+        os.remove(index[1])
         firstCounter += 1
 
 print(userList)
@@ -54,16 +60,22 @@ print(userList)
 print(firstCounter)
 print(secondCounter)
 
-
+pinCodesNew = []
 # appends pinCodes
 for pincode in userList:
     pinCodes.remove(pincode)
-    pinCodes.append(pincode)
+    pinCodesNew.append(pincode)
+
+    
         
-os.chdir("C:\\Users\\ngjun\\Desktop")
+os.chdir("C:\\Users\\ngjun\\Desktop\\Pin Codes after Fast Test\\")
 #Write into txt
 with open(user+"_updated.txt",'w') as filehandle:
     for num in pinCodes:
+        filehandle.write("%s\n"%num)
+        
+with open(user+"_left.txt",'w') as filehandle:
+    for num in pinCodesNew:
         filehandle.write("%s\n"%num)
     
 print(userFaulty)

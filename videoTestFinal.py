@@ -14,7 +14,7 @@ userFaulty={}
 #list of users
 userList = []
 
-user = 'WenJie'
+user = 'CiEn'
 
 # Get current Directory
 current_directory = os.getcwd()
@@ -23,7 +23,13 @@ current_directory = os.getcwd()
 folder_directory = "F:\\DATA\\" + user
         
 # Extract Pin Codes
-pinCodes = extractPinCodes(user, "F:\\DATA\\pinCodes") #glen com
+try:
+    pinCodes = extractPinCodes(user +"_updated", "C:\\Users\\ngjun\\Desktop\\") #glen com
+except FileNotFoundError:
+    pinCodes = extractPinCodes(user, "C:\\Users\\ngjun\\Desktop\\")
+    
+print(pinCodes)
+    
         
 # Change directory to datasets to get data
 os.chdir(folder_directory)
@@ -49,7 +55,6 @@ for index in faulty_videos:
         firstCounter += 1
 
 print(userList)
-#userFaulty[user] = userList
 print(firstCounter)
 print(secondCounter)
 
