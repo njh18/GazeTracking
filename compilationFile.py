@@ -25,8 +25,11 @@ def calcTimeDiff(dateobject1,dateobject2):
 
 
 # get csv files
-coordDf = pd.read_csv("C:\\Users\\ngjun\\Desktop\\FINAL COMPILATION\\Ryan_coordinates.csv")
-sheet_to_df_map = pd.read_excel("C:\\Users\\ngjun\\Desktop\\FINAL COMPILATION\\Ryan-2021-02-24_23-30-47\\compiled_sensors.xlsx", sheet_name=None)
+coordDf = pd.read_csv("C:\\Users\\ngjun\\OneDrive\\Desktop\\FINAL COMPILATION\\Ryan_coordinates.csv",
+                      dtype = {'Pin Code':str}, parse_dates=["Current Timestamp"] )
+
+sheet_to_df_map = pd.read_excel("C:\\Users\\ngjun\\OneDrive\\Desktop\\FINAL COMPILATION\\Ryan-2021-02-24_23-30-47\\compiled_sensors.xlsx", 
+                                sheet_name=None,parse_dates=["timestamp"] )
 
 #Getting sheetnames
 mylist = sheet_to_df_map.keys()
@@ -38,12 +41,6 @@ for sheet in mylist:
     for columnName in currentColumns:
         if columnName not in ('Unnamed: 0', 'time', 'seconds_elapsed','timestamp'):
             columnNames.append(sheet+"_"+columnName)
-
-# Convert all timestamp values to datetime
-for currentSheet in mylist:
-    sheet_to_df_map[currentSheet]['timestamp'] = pd.to_datetime(sheet_to_df_map[currentSheet]['timestamp'], format='%Y-%m-%d %H:%M:%S.%f')
-coordDf['Current Timestamp'] = pd.to_datetime(coordDf['Current Timestamp'],format = '%Y-%m-%d %H:%M:%S.%f')
-print("Converted timestamps to datetime")
 
 ############################################## MAIN CODE #########################################
 
