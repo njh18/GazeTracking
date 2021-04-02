@@ -25,12 +25,11 @@ def calcTimeDiff(dateobject1,dateobject2):
 
 
 # get csv files
-coordDf = pd.read_csv("C:\\Users\\ngjun\\Documents\\GitHub\\GazeTracking\\Data\\JHprac\\JHprac_coordinates.csv")
-sheet_to_df_map = pd.read_excel("C:\\Users\\ngjun\\Documents\\GitHub\\GazeTracking\\Data\\JHprac\\JHprac_Sensors\\compiled_sensors.xlsx", sheet_name=None)
+coordDf = pd.read_csv("C:\\Users\\ngjun\\Desktop\\FINAL COMPILATION\\Ryan_coordinates.csv")
+sheet_to_df_map = pd.read_excel("C:\\Users\\ngjun\\Desktop\\FINAL COMPILATION\\Ryan-2021-02-24_23-30-47\\compiled_sensors.xlsx", sheet_name=None)
 
 #Getting sheetnames
 mylist = sheet_to_df_map.keys()
-
 
 # append names into column
 columnNames = []
@@ -58,7 +57,7 @@ for currentSheet in mylist:
     print(currentColumns)
 
     #Barometer and light have different 
-    if currentSheet in ['Barometer','Light']:
+    if currentSheet in ['Barometer','Light','location']:
         timestamps = []
         for index, row in islice(sheet_to_df_map[currentSheet].iterrows(),0,None):
             if index < len(sheet_to_df_map[currentSheet].index)-1:
@@ -112,4 +111,4 @@ for currentSheet in mylist:
 
 print(coordDf.head())
 
-coordDf.to_csv("JHprac_Compiled.csv")
+coordDf.to_csv("C:\\Users\\ngjun\\Desktop\\FINAL COMPILATION\\Ryan_Compiled.csv",index=False)

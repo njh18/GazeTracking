@@ -15,12 +15,10 @@ import datetime
 from videoRotation import videoRotationMultiple
 from extractNames import extractNames, formatTime
 from extractPinCodes import extractPinCodes
-
+start_time = time.time()
 #list of users
-userList = ["Chloe","ShiYu","YingYi","Shaun","YuZhi"]
-
-
-
+#userList = ["Ivan","Javin","Beverley"]
+userList = ["Xavier"]
 
 for user in userList:
     # Get current Directory
@@ -54,7 +52,7 @@ for user in userList:
                     "Left X-Coord (Eye)", "Left Y-Coord (Eye)", "Right X-Coord (Eye)", "Right Y-Coord (Eye)"]
     new_df = pd.DataFrame(columns=column_names)
     
-    for num in range(len(video_names_rotated)):
+    for num in range(69,len(video_names_rotated)):
 
             # Just to check progress of loop
         print("processing " + str(num+1) + " out of " +
@@ -156,7 +154,7 @@ for user in userList:
         cv2.destroyAllWindows()
         print(new_df)
     
-    print(new_df)
+    print(new_df.head(10))
     
     # Cleaning Datafram
     tdelta = pd.to_timedelta(new_df["Time Passed"], unit="ms")
@@ -166,4 +164,9 @@ for user in userList:
     
     #pathName = "C:\\Users\\ngjun\\OneDrive\\Desktop\\compiledCoordinates\\" #glen com
     pathName = "C:\\Users\\ngjun\\desktop\\compiledCoordinates\\"
-    new_df.to_csv(pathName + user + "_coordinates" + ".csv")
+    if os.path.exists(pathName + user + "_coordinates" + ".csv"):
+        new_df.to_csv(pathName + user + "_coordinates_1" + ".csv",index=False)
+    else:
+        new_df.to_csv(pathName + user + "_coordinates" + ".csv",index=False)
+
+print("--- %s seconds ---" % (time.time() - start_time))
