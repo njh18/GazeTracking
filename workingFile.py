@@ -24,10 +24,11 @@ def calcTimeDiff(dateobject1,dateobject2):
   return timeDiffMs
 
 #Get User
-user = "JiHui"
+user = "Xavier"
 
 # get csv files
-coordDf = pd.read_csv("C:\\Users\\ngjun\\Desktop\\compiledCoordinates\\"+ user +"_coordinates.csv")
+#coordDf = pd.read_csv("C:\\Users\\ngjun\\Desktop\\compiledCoordinates\\"+ user +"_coordinates.csv") #Main
+coordDf = pd.read_csv("C:\\Users\\ngjun\\OneDrive\\Desktop\\compiledCoordinates\\"+ user +"_coordinates.csv")  #glendon
 pinCodes = coordDf['Pin Code'].unique()
 
 
@@ -45,13 +46,13 @@ print(len(errors))
 #### OUTPUT THE DATA into a txt file to re-record
 
 # Extract Pin Codes
-pinCodes_original = extractPinCodes(user, "F:\\DATA\\pinCodes")
+pinCodes_original = extractPinCodes(user + "_updated", "C:\\Users\\ngjun\\OneDrive\\Desktop\\DATA\\pinCodes")
 
 pinCodesNew = []
 for value in errors:
     pinCodesNew.append(pinCodes_original[value[1]])    
 
-os.chdir("C:\\Users\\ngjun\\Desktop")
+os.chdir("C:\\Users\\ngjun\\OneDrive\\Desktop")
 #Write into txt
 with open(user+"_left.txt",'w') as filehandle:
     for num in pinCodesNew:
