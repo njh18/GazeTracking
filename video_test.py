@@ -25,7 +25,7 @@ current_directory = os.getcwd()
 
 
 ######################Change this when necessary #################################
-video_name = "JiHui_2021_03_31_10_15_45.mp4"
+video_name = "Alvin_2021_04_03_00_18_27.mp4"
 new_video_name = video_name[:-4]+"_rotated"+".mp4"
 
 # Getting Videoinformation
@@ -135,4 +135,10 @@ while(cap.isOpened()):
         break
 
 
+####### Finding out the error
+
+sampleDfZero = new_df[new_df["X-Coord (Both)"] == 0]
+error = round(sampleDfZero.shape[0]*100/new_df.shape[0],2)
+
+print(error)
 print(new_df)
