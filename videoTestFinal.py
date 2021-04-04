@@ -14,7 +14,7 @@ userFaulty={}
 #list of users
 userList = []
 
-user = 'Xavier'
+user = 'Leonel'
 
 # Get current Directory
 current_directory = os.getcwd()
@@ -22,14 +22,6 @@ current_directory = os.getcwd()
 # Get the folder directory
 folder_directory = "F:\\DATA\\" + user
         
-# Extract Pin Codes
-try:
-    pinCodes = extractPinCodes(user +"_updated", "C:\\Users\\ngjun\\Desktop\\Pin Codes after Fast Test\\") #glen com
-except FileNotFoundError:
-    pinCodes = extractPinCodes(user, "C:\\Users\\ngjun\\Desktop\\Pin Codes after Fast Test\\")
-    
-print(pinCodes)
-    
         
 # Change directory to datasets to get data
 os.chdir(folder_directory)
@@ -39,7 +31,16 @@ faulty_videos = videoRotationMultiple(user, folder_directory)
         
 # Change to directory with rotated videos
 os.chdir(folder_directory+"\\rotated")
-        
+      
+
+# Extract Pin Codes
+try:
+    pinCodes = extractPinCodes(user +"_updated", "C:\\Users\\ngjun\\Desktop\\Pin Codes after Fast Test\\") #glen com
+except FileNotFoundError:
+    pinCodes = extractPinCodes(user, "C:\\Users\\ngjun\\Desktop\\Pin Codes after Fast Test\\")
+    
+print(pinCodes)    
+
 # 
 firstCounter = 0
 secondCounter = 0

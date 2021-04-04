@@ -9,10 +9,8 @@ import pandas as pd
 import os
 from extractPinCodes import extractPinCodes
 
-#userList = ["ZhiYu","Gynele"]
-
 #Get User
-user = "Xavier"
+user = "Leonel"
 
 # get csv files
 coordDf = pd.read_csv("C:\\Users\\ngjun\\Desktop\\compiledCoordinates\\"+ user +"_coordinates_1.csv",

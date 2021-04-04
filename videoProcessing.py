@@ -18,7 +18,7 @@ from extractPinCodes import extractPinCodes
 start_time = time.time()
 #list of users
 #userList = ["Ivan","Javin","Beverley"]
-userList = ["Xavier"]
+userList = ["Leonel"]
 
 for user in userList:
     # Get current Directory
@@ -52,8 +52,7 @@ for user in userList:
                     "Left X-Coord (Eye)", "Left Y-Coord (Eye)", "Right X-Coord (Eye)", "Right Y-Coord (Eye)"]
     new_df = pd.DataFrame(columns=column_names)
     
-    for num in range(69,len(video_names_rotated)):
-
+    for num in range(29,len(video_names_rotated)):
             # Just to check progress of loop
         print("processing " + str(num+1) + " out of " +
               str(len(video_names_rotated)) + " videos")
