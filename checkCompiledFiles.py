@@ -10,7 +10,7 @@ import os
 from extractPinCodes import extractPinCodes
 
 #Get User
-user = "Leonel"
+user = "CiEn"
 
 # get csv files
 coordDf = pd.read_csv("C:\\Users\\ngjun\\Desktop\\compiledCoordinates\\"+ user +"_coordinates_1.csv",

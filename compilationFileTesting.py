@@ -42,16 +42,18 @@ for sheet in mylist:
 
 ############################################## MAIN CODE #########################################
 
+dflength = coordDf.shape[0]
 for currentSheet in mylist:
     print(currentSheet)
+    start_time = time.time()
     #get names of columns to be added into coordDf
     currentColumns = list(sheet_to_df_map[currentSheet].columns)
     toremove =['Unnamed: 0', 'time', 'seconds_elapsed','timestamp']
     for name in toremove:
         currentColumns.remove(name)
-    print(currentColumns)
+        
 
-    #Barometer and light have different 
+    #Barometer and light have different ways of combining df
     if currentSheet in ['Barometer','Light','location']:
         timestamps = []
         for index, row in islice(sheet_to_df_map[currentSheet].iterrows(),0,None):
@@ -61,7 +63,7 @@ for currentSheet in mylist:
         start = 0
         for index, row in islice(coordDf.iterrows(),0,None):
             ### For checking progress
-            if index%100 == 0:
+            if index%1000 == 0:
                 print("Current index is %d" %(index))
                 
             for i in range(start,len(timestamps)):
@@ -77,13 +79,13 @@ for currentSheet in mylist:
                 else:
                     continue
             for name in currentColumns:
-              coordDf.loc[index, currentSheet+"_"+name] = sheet_to_df_map[currentSheet].iloc[final][name] 
+              coordDf.loc[index, currentSheet+"_"+name] = sheet_to_df_map[currentSheet].iloc[final][name]  
     else:
         start = 0 
         sensorlength = sheet_to_df_map[currentSheet].shape[0]
-        for index in range(0,10): ################################## REMEMBER TO CHANGE THISSSSSSSSSS
+        for index in range(dflength): ################################## REMEMBER TO CHANGE THISSSSSSSSSS
             ### For checking progress
-            if index%100 == 0:
+            if index%1000 == 0:
                 print("Current index is %d" %(index))
             minimum = [start,33]
             for index1 in range(start,sensorlength):
@@ -103,6 +105,8 @@ for currentSheet in mylist:
             for name in currentColumns:
               coordDf.loc[index, currentSheet+"_"+name] = sheet_to_df_map[currentSheet].iloc[minimum[0]][name]
             
+    print("--- %s seconds ---" % (time.time() - start_time))
+            
 print(coordDf.head())
 
-coordDf.to_csv("C:\\Users\\ngjun\\Desktop\\FINAL COMPILATION\\Ryan_Compiled.csv",index=False)
+coordDf.to_csv("C:\\Users\\ngjun\\Desktop\\FINAL COMPILATION\\" + user "_Compiled.csv",index=False)
