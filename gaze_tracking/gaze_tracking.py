@@ -94,17 +94,16 @@ class GazeTracking(object):
     def pupil_left_coords_head_only(self):
         """Returns the coordinates of the left eye"""
         if self.pupils_located:
-            x = self.eye_left.origin[0] 
+            x = self.eye_left.origin[0]
             y = self.eye_left.origin[1]
             return (x, y)
 
     def pupil_right_coords_head_only(self):
         """Returns the coordinates of the right eye"""
         if self.pupils_located:
-            x = self.eye_right.origin[0] 
+            x = self.eye_right.origin[0]
             y = self.eye_right.origin[1]
             return (x, y)
-
 
     def horizontal_ratio(self):
         """Returns a number between 0.0 and 1.0 that indicates the
