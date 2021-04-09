@@ -10,10 +10,9 @@ import os
 from extractPinCodes import extractPinCodes
 
 #Get User
-user = "CiEn"
-
+user = "Lynette"
 # get csv files
-coordDf = pd.read_csv("C:\\Users\\ngjun\\Desktop\\compiledCoordinates\\"+ user +"_coordinates_1.csv",
+coordDf = pd.read_csv("C:\\Users\\ngjun\\Desktop\\compiledCoordinates\\"+ user +"_coordinates.csv",
                       dtype = {'Pin Code':str})
 pinCodes = coordDf['Pin Code'].unique()
 
@@ -49,7 +48,7 @@ for pincode in pinCodesNew:
     pinCodes_original.remove(pincode)
 
 # Get the folder directory
-folder_directory = "F:\\DATA\\" + user
+folder_directory = "D:\\DATA_COMPLETED\\COMPLETED\\Videos\\" + user
 os.chdir(folder_directory)
 videos = os.listdir()
 if 'rotated' in videos:

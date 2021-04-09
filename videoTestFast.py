@@ -14,19 +14,19 @@ userFaulty={}
 #list of users
 userList = []
 
-user = 'CiEn'
+user = 'Eden'
 
 # Get current Directory
 current_directory = os.getcwd()
     
 # Get the folder directory
-folder_directory = "F:\\DATA\\" + user
+folder_directory = "D:\\DATA\\" + user
         
 # Extract Pin Codes
 try:
-    pinCodes = extractPinCodes(user +"_updated", "F:\\DATA\\pinCodes") #glen com
+    pinCodes = extractPinCodes(user +"_updated", "D:\\DATA\\pinCodes") #glen com
 except FileNotFoundError:
-    pinCodes = extractPinCodes(user, "F:\\DATA\\pinCodes")
+    pinCodes = extractPinCodes(user, "D:\\DATA\\pinCodes")
     
 print(pinCodes)
         
@@ -64,6 +64,7 @@ pinCodesNew = []
 # appends pinCodes
 for pincode in userList:
     pinCodes.remove(pincode)
+    pinCodes.append(pincode)
     pinCodesNew.append(pincode)
 
 #remove all videos

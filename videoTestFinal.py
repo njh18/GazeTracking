@@ -14,13 +14,13 @@ userFaulty={}
 #list of users
 userList = []
 
-user = "QianRen"
+user = "Eden"
 
 # Get current Directory
 current_directory = os.getcwd()
     
 # Get the folder directory
-folder_directory = "F:\\DATA\\" + user
+folder_directory = "D:\\DATA\\" + user
         
         
 # Change directory to datasets to get data

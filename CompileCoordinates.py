@@ -7,7 +7,7 @@ Created on Sun Mar 28 22:30:41 2021
 import pandas as pd
 
 #Get User
-user = "CiEn"
+user = "Ivan"
 
 # get csv files
 coordDf = pd.read_csv("C:\\Users\\ngjun\\Desktop\\compiledCoordinates\\"+ user +"_coordinates.csv",

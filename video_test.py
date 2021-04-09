@@ -25,7 +25,7 @@ current_directory = os.getcwd()
 
 
 ######################Change this when necessary #################################
-video_name = "ChengJun_2021_04_07_14_14_48.mp4"
+video_name = "Eden_2021_04_09_14_07_30.mp4"
 new_video_name = video_name[:-4]+"_rotated"+".mp4"
 
 # Getting Videoinformation
