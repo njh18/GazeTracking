@@ -10,7 +10,7 @@ import os
 ############################## DONT RUN THIS UNTIL ITS CONFIRMED!!!!
 
 #Get User
-user = "Felix"
+user = "MingHao"
 
 # Get the folder directory
 folder_directory = "D:\\DATA\\" + user
@@ -23,7 +23,7 @@ if 'rotated' in videos:
 # MANUAL FILL
 
 ## JAVIN
-faulty_videos = ['Felix_2021_03_25_14_19_26.mp4', 'Felix_2021_03_25_14_19_57.mp4', 'Felix_2021_03_25_14_21_45.mp4', 'Felix_2021_03_25_14_21_57.mp4', 'Felix_2021_03_25_14_23_15.mp4', 'Felix_2021_03_25_14_23_22.mp4', 'Felix_2021_03_25_14_24_10.mp4', 'Felix_2021_03_25_14_30_49.mp4', 'Felix_2021_03_25_14_31_15.mp4', 'Felix_2021_03_25_14_31_24.mp4', 'Felix_2021_03_25_14_32_38.mp4', 'Felix_2021_03_25_14_32_46.mp4', 'Felix_2021_03_25_14_33_01.mp4', 'Felix_2021_03_25_14_33_09.mp4', 'Felix_2021_03_25_14_33_36.mp4', 'Felix_2021_03_25_14_33_44.mp4', 'Felix_2021_03_25_14_34_19.mp4', 'Felix_2021_03_25_14_37_40.mp4']
+faulty_videos = ['John_2021_04_21_21_15_02.mp4', 'John_2021_04_21_21_15_49.mp4', 'John_2021_04_21_21_18_45.mp4', 'John_2021_04_21_21_20_31.mp4', 'John_2021_04_21_21_21_07.mp4', 'John_2021_04_21_21_25_01.mp4', 'John_2021_04_21_21_26_42.mp4', 'John_2021_04_21_21_26_49.mp4', 'John_2021_04_21_21_26_57.mp4', 'John_2021_04_21_21_27_28.mp4', 'John_2021_04_21_21_28_48.mp4']
 
 for video in faulty_videos:
     os.remove(video)

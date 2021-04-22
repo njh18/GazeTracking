@@ -14,8 +14,7 @@ userFaulty={}
 #list of users
 userList = []
 
-user = "Eden"
-
+user = "YuanRu"
 # Get current Directory
 current_directory = os.getcwd()
     

@@ -17,8 +17,7 @@ from extractNames import extractNames, formatTime
 from extractPinCodes import extractPinCodes
 start_time = time.time()
 #list of users
-#userList = ["Ivan","Javin","Beverley"]
-userList = ["Eden"]
+userList = ["YuanRu"]
 
 for user in userList:
     # Get current Directory

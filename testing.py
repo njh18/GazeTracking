@@ -10,21 +10,21 @@ import pandas as pd
 import shutil
 
 
-first = "Beverley-2021-03-02_18-26-40"
-second = "Beverley2-2021-03-02_19-00-20"
+first = "Mariya-2021-03-14_19-47-02"
+second = "Mariya-2021-03-14_20-19-50"
 
-path2 = "C:\\Users\\Jun Hso\\Desktop\\" + second + "\\"
+path2 = "D:\\DATA_COMPLETED\\To be combined\\" + second + "\\"
 os.chdir(path2)
 filename2 = os.listdir()
 print(filename2)
 
-path1 = "C:\\Users\\Jun Hso\\Desktop\\" + first + "\\"
+path1 = "D:\\DATA_COMPLETED\\To be combined\\" + first + "\\"
 os.chdir(path1)
 filename1 = os.listdir()
 print(filename1)
 
 
-path3 = "C:\\Users\\Jun Hso\\Desktop\\"+ first + "\\" + first + "\\"
+path3 = "C:\\Users\\ngjun\\Desktop\\"+ first + "\\"
 if os.path.exists(path3) == False:
     os.makedirs(path3)
 
@@ -49,15 +49,15 @@ for file in filename2:
         df3 = df2
         print(df3.shape)
         os.chdir(path3)
-        df3.to_csv(path3 + file)
+        df3.to_csv(path3 + file,index = False)
     elif df2.empty:
         df3 = df1
         print(df3.shape)
         os.chdir(path3)
-        df3.to_csv(path3 + file)
+        df3.to_csv(path3 + file,index = False)
     else:
         df3 =  pd.concat([df1,df2])
         print(df3.shape)
         
         os.chdir(path3)
-        df3.to_csv(path3 + file)
+        df3.to_csv(path3 + file,index = False)

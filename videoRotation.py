@@ -155,8 +155,10 @@ def videoRotationTest(user,current_directory):
         # rename video_name
         new_video_name = video_name[:-4]+"_rotated"+".mp4"
         
-        if clip1.fps >120:
+        if clip1.fps >120 or clip1.duration >10:
             print(video_name + " is faulty")
+            print("fps is:" + str(clip1.fps))
+            print("duration is" + str(clip1.duration))
             print(counter)
             faulty_videos.append((counter,video_name))
 

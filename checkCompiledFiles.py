@@ -9,8 +9,9 @@ import pandas as pd
 import os
 from extractPinCodes import extractPinCodes
 
+
 #Get User
-user = "Eden"
+user = "YuanRu"
 # get csv files
 coordDf = pd.read_csv("C:\\Users\\ngjun\\Desktop\\compiledCoordinates\\"+ user +"_coordinates.csv",
                       dtype = {'Pin Code':str})
@@ -24,7 +25,7 @@ for i in range(len(pinCodes)):
   sampleDf = coordDf[coordDf['Pin Code'] == pinCodes[i]]
   sampleDfZero = sampleDf[sampleDf['Left X-Coord (Both)'] == 0]
   error = round(sampleDfZero.shape[0]*100/sampleDf.shape[0],2)
-  if error >= 10:
+  if error > 10:
     errors.append((pinCodes[i],i,error))
 
 print(errors)
