@@ -42,7 +42,7 @@ except FileNotFoundError:
 # Put all the pincodes with error in a list
 pinCodesNew = []
 for value in errors:
-    pinCodesNew.append(pinCodes_original[value[1]])
+    pinCodesNew.append(value[0])
     
 # Remove pinCode Errors from list
 for pincode in pinCodesNew:

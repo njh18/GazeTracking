@@ -21,6 +21,7 @@ def format_time(t):
 # Change directory to datasets to get data
 os.chdir("D:\\DATA_COMPLETED\\Sensor Logger\\")
 coordinates = os.listdir()
+coordinates.remove("Complete")
 current_directory = os.getcwd()
 
 

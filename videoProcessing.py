@@ -7,17 +7,15 @@ Created on Thu Nov  5 16:46:01 2020
 import os
 import cv2
 from gaze_tracking import GazeTracking
-import matplotlib.pyplot as plt
 import time
 import pandas as pd
 import datetime
-from tqdm import tqdm
-from videoRotation import videoRotationMultiple
 from extractNames import extractNames, formatTime
 from extractPinCodes import extractPinCodes
 start_time = time.time()
 #list of users
-userList = ["YuanRu"]
+
+userList = ["Nico"]
 
 for user in userList:
     # Get current Directory

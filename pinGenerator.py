@@ -17,9 +17,9 @@ def pinGenerator(num):
         current = ""
         for i in range(4):
             current += str(random.randint(0,9))
-        
-        listofnumbers.append(current)
-        counter+=1
+        if current not in listofnumbers:
+            listofnumbers.append(current)
+            counter+=1
         
     return listofnumbers
 
