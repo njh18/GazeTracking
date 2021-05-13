@@ -19,8 +19,7 @@ from extractNames import extractNames
 from extractPinCodes import extractPinCodes
 
 # Change directory to datasets to get data
-#os.chdir("C:\\Users\\ngjun\\OneDrive\\Desktop\\videoTest\\") #glen com
-os.chdir("C:\\Users\\ngjun\\Desktop\\videoTest\\")
+os.chdir("C:\\Users\\Jun Hso\\Desktop\\videoTest\\")
 current_directory = os.getcwd()
 
 
@@ -120,7 +119,6 @@ while(cap.isOpened()):
         cv2.putText(frame, "Left pupil:  " + str(left_pupil), (90, 130),
                     cv2.FONT_HERSHEY_DUPLEX, 0.9, (147, 58, 31), 1)
 
-
         print(left_pupil)
         # Input all the calcuated values into new dataframe
         new_row = {"Timeframe": timeframe, "X-Coord (Both)": both_x, "Y-Coord (Both)": both_y,
@@ -135,10 +133,10 @@ while(cap.isOpened()):
         break
 
 
-####### Finding out the error
+# Finding out the error
 
 sampleDfZero = new_df[new_df["X-Coord (Both)"] == 0]
-error = round(sampleDfZero.shape[0]*100/new_df.shape[0],2)
+error = round(sampleDfZero.shape[0]*100/new_df.shape[0], 2)
 
 print(error)
 print(new_df)

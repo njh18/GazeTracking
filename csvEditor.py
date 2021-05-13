@@ -1,15 +1,12 @@
 # -*- coding: utf-8 -*-
 """
-Created on Sat Mar 13 23:01:01 2021
-
-@author: Jun Hso
+Combines sensor data from multiple csv files into 1 excel file with timestamp in timezone GMT +08
 """
 
 import os
 import pandas as pd
 import datetime
 import numpy as np
-
 
 
 def format_time(t):
@@ -19,7 +16,7 @@ def format_time(t):
 
 
 # Change directory to datasets to get data
-os.chdir("D:\\DATA_COMPLETED\\Sensor Logger\\")
+os.chdir("E:\\DATA_COMPLETED\\Sensor Logger\\")
 coordinates = os.listdir()
 coordinates.remove("Complete")
 current_directory = os.getcwd()
@@ -28,44 +25,43 @@ current_directory = os.getcwd()
 for name in coordinates:
     index = name.find("-")
     user = name[:index]
-    print ("------- Current User is %s -------"%(user))
-    if user != "Ryan":
-        os.chdir("D:\\DATA_COMPLETED\\Sensor Logger\\"+name+"\\")
-        names = os.listdir()
-        try:
-            names.remove("Metadata.csv")
-        except:
+    print("------- Current User is %s -------" % (user))
+    os.chdir("D:\\DATA_COMPLETED\\Sensor Logger\\"+name+"\\")
+    names = os.listdir()
+    try:
+        names.remove("Metadata.csv")
+    except:
+        pass
+    try:
+        names.remove("Microphone.m4a")
+    except:
+        pass
+
+    # Create a Pandas Excel writer using XlsxWriter as the engine.
+    writer = pd.ExcelWriter("C:\\Users\\ngjun\\Desktop\\Compiled Sensors\\" +
+                            user + '_compiled_sensors.xlsx', engine='xlsxwriter')
+
+    # print(list_of_names[0][-4:])
+    for sheet in names:
+        if sheet[-4:] == ".txt":
             pass
-        try:
-            names.remove("Microphone.m4a")
-        except:
-            pass
-        
-        # Create a Pandas Excel writer using XlsxWriter as the engine.
-        writer = pd.ExcelWriter("C:\\Users\\ngjun\\Desktop\\Compiled Sensors\\" + user + '_compiled_sensors.xlsx', engine='xlsxwriter')
-        
-        # print(list_of_names[0][-4:])
-        for sheet in names:
-            if sheet[-4:] == ".txt":
+        else:
+            try:
+                df = pd.read_csv(sheet)
+
+                # Change to datetime64[ns]
+                df['timestamp'] = pd.to_datetime(df['time'], unit='ns')
+
+                # Change to gmt +8
+                df['timestamp'] = df['timestamp'] + pd.Timedelta('8 hour')
+
+                # Convert into string
+                df['timestamp'] = df['timestamp'].apply(format_time)
+
+                df.to_excel(writer, sheet_name=sheet[:-4])
+
+            except:
                 pass
-            else:
-                try:
-                    df = pd.read_csv(sheet)
-            
-                    # Change to datetime64[ns]
-                    df['timestamp'] = pd.to_datetime(df['time'], unit='ns')
-            
-                    # Change to gmt +8
-                    df['timestamp'] = df['timestamp'] + pd.Timedelta('8 hour')
-            
-                    # Convert into string
-                    df['timestamp'] = df['timestamp'].apply(format_time)
-            
-        
-                    df.to_excel(writer, sheet_name=sheet[:-4])
-                    
-                except:
-                    pass
-                
-        writer.save()
-        print("------- Completed %s -------"%(user))
+
+    writer.save()
+    print("------- Completed %s -------" % (user))

@@ -19,7 +19,7 @@ folder_directory = "C:\\Users\\Jun Hso\\Desktop\\Xiang"
 os.chdir(folder_directory)
 
 # Video rotation
-video_rotation_multiple(folder_directory)
+videoRotationMultiple(folder_directory)
 
 # Change to directory with rotated videos
 os.chdir(folder_directory+"\\rotated")

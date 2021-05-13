@@ -19,7 +19,7 @@ user = "YapSiang"
 current_directory = os.getcwd()
     
 # Get the folder directory
-folder_directory = "D:\\DATA\\" + user
+folder_directory = "E:\\DATA\\" + user
         
         
 # Change directory to datasets to get data
@@ -34,9 +34,9 @@ os.chdir(folder_directory+"\\rotated")
 
 # Extract Pin Codes
 try:
-    pinCodes = extractPinCodes(user +"_updated", "C:\\Users\\ngjun\\Desktop\\Pin Codes after Fast Test\\") #glen com
+    pinCodes = extractPinCodes(user +"_updated", "C:\\Users\\Jun Hso\\Desktop\\Pin Codes after Fast Test\\") #glen com
 except FileNotFoundError:
-    pinCodes = extractPinCodes(user, "C:\\Users\\ngjun\\Desktop\\Pin Codes after Fast Test\\")
+    pinCodes = extractPinCodes(user, "C:\\Users\\Jun Hso\\Desktop\\Pin Codes after Fast Test\\")
     
 print(pinCodes)    
 
@@ -64,7 +64,7 @@ for pincode in userList:
     pinCodes.remove(pincode)
     pinCodes.append(pincode)
         
-os.chdir("C:\\Users\\ngjun\\Desktop\\")
+os.chdir("C:\\Users\\Jun Hso\\Desktop\\")
 #Write into txt
 with open(user+"_updated.txt",'w') as filehandle:
     for num in pinCodes:

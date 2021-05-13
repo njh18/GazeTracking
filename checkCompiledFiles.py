@@ -11,9 +11,9 @@ from extractPinCodes import extractPinCodes
 
 
 #Get User
-user = "YuanRu"
+user = "Aaron"
 # get csv files
-coordDf = pd.read_csv("C:\\Users\\ngjun\\Desktop\\compiledCoordinates\\"+ user +"_coordinates.csv",
+coordDf = pd.read_csv("C:\\Users\\Jun Hso\\Desktop\\Compiled Coordinates\\"+ user +"_coordinates.csv",
                       dtype = {'Pin Code':str})
 pinCodes = coordDf['Pin Code'].unique()
 
@@ -35,9 +35,9 @@ print(len(errors))
 
 # Extract Pin Codes, Either the updated one or the non updated one
 try:
-    pinCodes_original  = extractPinCodes(user +"_updated", "C:\\Users\\ngjun\\Desktop\\") #glen com
+    pinCodes_original  = extractPinCodes(user +"_updated", "C:\\Users\\Jun Hso\\Desktop\\") #glen com
 except FileNotFoundError:
-    pinCodes_original  = extractPinCodes(user, "C:\\Users\\ngjun\\Desktop\\")
+    pinCodes_original  = extractPinCodes(user, "C:\\Users\\Jun Hso\\Desktop\\")
     
 # Put all the pincodes with error in a list
 pinCodesNew = []
@@ -49,7 +49,7 @@ for pincode in pinCodesNew:
     pinCodes_original.remove(pincode)
 
 # Get the folder directory
-folder_directory = "D:\\DATA\\" + user
+folder_directory = "E:\\DATA\\" + user
 os.chdir(folder_directory)
 videos = os.listdir()
 if 'rotated' in videos:
@@ -63,7 +63,7 @@ for value in errors:
 
 print(faulty_videos)
 ######################### WRITING INTO TEXT FILES #####################################
-os.chdir("C:\\Users\\ngjun\\Desktop\\Final Pin Code Updates\\")
+os.chdir("C:\\Users\\Jun Hso\\Desktop\\Final Pin Code Updates\\")
 with open(user+"_error.txt",'w') as filehandle:
     for num in pinCodesNew:
         filehandle.write("%s\n"%num)    

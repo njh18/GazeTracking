@@ -2,6 +2,7 @@
 from datetime import datetime as dt
 import datetime as datetime
 
+
 def formatTime(t):
     if t.microsecond % 1000 >= 500:  # check if there will be rounding up
         t = t + datetime.timedelta(milliseconds=1)  # manually round up
@@ -17,7 +18,7 @@ def extractNames(video_name):
 
     Returns
     -------
-    name : DICTIONARY
+    names : DICTIONARY
         'User' : Name of user that recorded video
         'Timestamp': Timestamp of the recorded video
     '''
@@ -26,12 +27,11 @@ def extractNames(video_name):
 
     # finding the first underscore to extract the user
     first_underscore = video_name.find("_")
-    
+
     if video_name.find("rotated") == -1:
         rotation = -3
-    else:    
+    else:
         rotation = video_name.find("rotated")
-
 
     # Extracting timestamp and converting to datetime object
     timestamp = video_name[first_underscore+1:rotation-1]

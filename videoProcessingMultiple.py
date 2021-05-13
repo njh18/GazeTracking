@@ -17,16 +17,16 @@ from extractNames import extractNames, formatTime
 from extractPinCodes import extractPinCodes
 
 #list of users
-userList = ['YanRu', 'Winnchis', 'Xavier', 'ZhiYu', 'FungRu', 'Clarence', 'Kelvin', 'PekKoon', 'WeiSheng']
+userList = ['Aaron']
 
 for user in userList:
     print("Current user is %s" %(user))
     # Get current Directory
     current_directory = os.getcwd()
-    folder_directory = "F:\\DATA\\" + user
+    folder_directory = "E:\\DATA\\" + user
     
     # Extract Pin Codes
-    pinCodes = extractPinCodes(user, "F:\\DATA\\pinCodes")
+    pinCodes = extractPinCodes(user, "E:\\DATA\\pinCodes")
 
     # Change directory to datasets to get data
     os.chdir(folder_directory)
