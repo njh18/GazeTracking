@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-Created on Wed Feb 24 23:37:24 2021
+Compile Coordinates file + Sensors (compiled) file
 
-@author: Jun Hso
 """
 
 import pandas as pd

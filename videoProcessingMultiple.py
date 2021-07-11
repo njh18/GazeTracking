@@ -17,7 +17,7 @@ from extractNames import extractNames, formatTime
 from extractPinCodes import extractPinCodes
 
 #list of users
-userList = ['Aaron']
+userList = ['Aaron',"JunHao"]
 
 for user in userList:
     print("Current user is %s" %(user))
@@ -66,6 +66,8 @@ for user in userList:
     #### inputs needed
     #### video_name
     #### new_df
+
+    ########################################### Code for 1 Person ################################################
     
         # takes in a video
         cap = cv2.VideoCapture(video_names_rotated[num])

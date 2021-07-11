@@ -19,17 +19,29 @@ pinCodes = coordDf['Pin Code'].unique()
 
 
 print(len(pinCodes))
-####### Finding out the number of errors
+
+######################################################## Finding out the number of errors #################################################
 errors = []
 for i in range(len(pinCodes)):
+    # No 1
   sampleDf = coordDf[coordDf['Pin Code'] == pinCodes[i]]
   sampleDfZero = sampleDf[sampleDf['Left X-Coord (Both)'] == 0]
   error = round(sampleDfZero.shape[0]*100/sampleDf.shape[0],2)
   if error > 10:
     errors.append((pinCodes[i],i,error))
 
+
+#### no 2
 print(errors)
 print(len(errors))
+
+
+
+
+
+
+
+
 
 ####### OUTPUT THE DATA into a txt file to re-record
 
